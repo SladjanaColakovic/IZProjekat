@@ -1,0 +1,282 @@
+@prefix : <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7> .
+
+<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasAddressBusWidth
+:hasAddressBusWidth rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Computer ;
+                    rdfs:range :DataBusWidth .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasBoostFrequency
+:hasBoostFrequency rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Processor ;
+                   rdfs:range :ProcessorBoostFrequency .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasCacheCapacity
+:hasCacheCapacity rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Cache ;
+                  rdfs:range :CacheCapacity .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasChipset
+:hasChipset rdf:type owl:ObjectProperty ;
+            rdfs:domain :Motherboard ;
+            rdfs:range :MotherboardChipset .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDataBusWidth
+:hasDataBusWidth rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Computer ;
+                 rdfs:range :DataBusWidth .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasFrequency
+:hasFrequency rdf:type owl:ObjectProperty ;
+              rdfs:domain :Processor ;
+              rdfs:range :ProcessorFrequency .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasPCIe
+:hasPCIe rdf:type owl:ObjectProperty ;
+         rdfs:domain :Motherboard ;
+         rdfs:range :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSATA
+:hasSATA rdf:type owl:ObjectProperty ;
+         rdfs:domain :Motherboard ;
+         rdfs:range :SATA .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSocket
+:hasSocket rdf:type owl:ObjectProperty ;
+           rdfs:domain :Processor ;
+           rdfs:range :ProcessorSocket .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSystemBusRate
+:hasSystemBusRate rdf:type owl:ObjectProperty ;
+                  rdfs:domain :FSB ;
+                  rdfs:range :SystemBusRate .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWordSize
+:hasWordSize rdf:type owl:ObjectProperty ;
+             rdfs:domain :Processor ;
+             rdfs:range :WordSize .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#version
+:version rdf:type owl:ObjectProperty ;
+         rdfs:domain :PCIe ;
+         rdfs:range :PCIeVersion .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfCores
+:numberOfCores rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Processor ;
+               rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfPCIe
+:numberOfPCIe rdf:type owl:DatatypeProperty ;
+              rdfs:domain :PCIe ;
+              rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfSata
+:numberOfSata rdf:type owl:DatatypeProperty ;
+              rdfs:domain :SATA ;
+              rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfThreads
+:numberOfThreads rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Processor ;
+                 rdfs:range xsd:int .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#AddressBusWidth
+:AddressBusWidth rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Cache
+:Cache rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#CacheCapacity
+:CacheCapacity rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Computer
+:Computer rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DataBusWidth
+:DataBusWidth rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#FSB
+:FSB rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L1
+:L1 rdf:type owl:Class ;
+    rdfs:subClassOf :Cache .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L2
+:L2 rdf:type owl:Class ;
+    rdfs:subClassOf :Cache .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L3
+:L3 rdf:type owl:Class ;
+    rdfs:subClassOf :Cache .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Laptop
+:Laptop rdf:type owl:Class ;
+        rdfs:subClassOf :Computer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Motherboard
+:Motherboard rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#MotherboardChipset
+:MotherboardChipset rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PC
+:PC rdf:type owl:Class ;
+    rdfs:subClassOf :Computer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_1.0
+:PCI_Express_1.0 rdf:type owl:Class ;
+                 rdfs:subClassOf :PCIeVersion .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_2.0
+:PCI_Express_2.0 rdf:type owl:Class ;
+                 rdfs:subClassOf :PCIeVersion .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_3.0
+:PCI_Express_3.0 rdf:type owl:Class ;
+                 rdfs:subClassOf :PCIeVersion .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_4.0
+:PCI_Express_4.0 rdf:type owl:Class ;
+                 rdfs:subClassOf :PCIeVersion .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe
+:PCIe rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIeVersion
+:PCIeVersion rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x1
+:PCIe_x1 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x16
+:PCIe_x16 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x2
+:PCIe_x2 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x4
+:PCIe_x4 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x8
+:PCIe_x8 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Processor
+:Processor rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ProcessorBoostFrequency
+:ProcessorBoostFrequency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ProcessorFrequency
+:ProcessorFrequency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ProcessorSocket
+:ProcessorSocket rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA
+:SATA rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_I
+:SATA_I rdf:type owl:Class ;
+        rdfs:subClassOf :SATA .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_II
+:SATA_II rdf:type owl:Class ;
+         rdfs:subClassOf :SATA .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_III
+:SATA_III rdf:type owl:Class ;
+          rdfs:subClassOf :SATA .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SystemBusRate
+:SystemBusRate rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#WordSize
+:WordSize rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#32-bit
+<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#32-bit> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf :WordSize .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#64-bit
+<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#64-bit> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf :WordSize .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
