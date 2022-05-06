@@ -12,6 +12,31 @@
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#cacheRAMType
+:cacheRAMType rdf:type owl:ObjectProperty ;
+              rdfs:domain :Cache ;
+              rdfs:range :RAM .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#chipsetCompatibility
+:chipsetCompatibility rdf:type owl:ObjectProperty ;
+                      rdfs:domain :MotherboardChipset ;
+                      rdfs:range :Processor .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#compatibleHDDInterface
+:compatibleHDDInterface rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf owl:topObjectProperty ;
+                        rdfs:domain :HDD ;
+                        rdfs:range :HDDInterface .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#compatibleSSDInterface
+:compatibleSSDInterface rdf:type owl:ObjectProperty ;
+                        rdfs:domain :SSD ;
+                        rdfs:range :SSDInterface .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasAddressBusWidth
 :hasAddressBusWidth rdf:type owl:ObjectProperty ;
                     rdfs:domain :Computer ;
@@ -30,6 +55,13 @@
                   rdfs:range :CacheCapacity .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasCapacity
+:hasCapacity rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :RAM ;
+             rdfs:range :RAMCapacity .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasChipset
 :hasChipset rdf:type owl:ObjectProperty ;
             rdfs:domain :Motherboard ;
@@ -42,10 +74,54 @@
                  rdfs:range :DataBusWidth .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasFormFactor
+:hasFormFactor rdf:type owl:ObjectProperty ;
+               rdfs:domain :SSD ;
+               rdfs:range :SSDFormFactor .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasFrequency
 :hasFrequency rdf:type owl:ObjectProperty ;
               rdfs:domain :Processor ;
               rdfs:range :ProcessorFrequency .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasHDDCapacity
+:hasHDDCapacity rdf:type owl:ObjectProperty ;
+                rdfs:domain :HDD ;
+                rdfs:range :HDDCapacity .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasHDDInterface
+:hasHDDInterface rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :HDD ;
+                 rdfs:range :HDDInterface .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasHDDSize
+:hasHDDSize rdf:type owl:ObjectProperty ;
+            rdfs:domain :HDD ;
+            rdfs:range :HDDSize .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasHDDSpeed
+:hasHDDSpeed rdf:type owl:ObjectProperty ;
+             rdfs:domain :HDD ;
+             rdfs:range :HDDSpeed .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasHardDisc
+:hasHardDisc rdf:type owl:ObjectProperty ;
+             rdfs:domain :Computer ;
+             rdfs:range :HardDisc .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMaxCapacity
+:hasMaxCapacity rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :RAM ;
+                rdfs:range :RAMMaxCapacity .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasPCIe
@@ -54,16 +130,53 @@
          rdfs:range :PCIe .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasProcessorSocket
+:hasProcessorSocket rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Motherboard ;
+                    rdfs:range :ProcessorSocket .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSATA
 :hasSATA rdf:type owl:ObjectProperty ;
          rdfs:domain :Motherboard ;
          rdfs:range :SATA .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSSDCapacity
+:hasSSDCapacity rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :SSD ;
+                rdfs:range :SSDCapacity .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSSDInterface
+:hasSSDInterface rdf:type owl:ObjectProperty ;
+                 rdfs:domain :SSD ;
+                 rdfs:range :SSDInterface .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSSDSpeed
+:hasSSDSpeed rdf:type owl:ObjectProperty ;
+             rdfs:domain :SSD ;
+             rdfs:range :SSDSpeed .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSocket
 :hasSocket rdf:type owl:ObjectProperty ;
            rdfs:domain :Processor ;
            rdfs:range :ProcessorSocket .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSpeed
+:hasSpeed rdf:type owl:ObjectProperty ;
+          rdfs:domain :RAM ;
+          rdfs:range :RAMClockSpeed .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasStorageCapacity
+:hasStorageCapacity rdf:type owl:ObjectProperty ;
+                    rdfs:domain :HardDisc ;
+                    rdfs:range :TotalStorageCapacity .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSystemBusRate
@@ -76,6 +189,25 @@
 :hasWordSize rdf:type owl:ObjectProperty ;
              rdfs:domain :Processor ;
              rdfs:range :WordSize .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#layout
+:layout rdf:type owl:ObjectProperty ;
+        rdfs:domain :RAM ;
+        rdfs:range :RAMLayout .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#manufacturer
+:manufacturer rdf:type owl:ObjectProperty ;
+              rdfs:domain :RAM ;
+              rdfs:range :RAMManufacturer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#socketCompatibility
+:socketCompatibility rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain :Processor ;
+                     rdfs:range :ProcessorSocket .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#version
@@ -98,6 +230,12 @@
 :numberOfPCIe rdf:type owl:DatatypeProperty ;
               rdfs:domain :PCIe ;
               rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfRAMSlots
+:numberOfRAMSlots rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Motherboard ;
+                  rdfs:range xsd:int .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfSata
@@ -132,12 +270,67 @@
 :Computer rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR
+:DDR rdf:type owl:Class ;
+     rdfs:subClassOf :SDRAM .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR2
+:DDR2 rdf:type owl:Class ;
+      rdfs:subClassOf :DDR .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR3
+:DDR3 rdf:type owl:Class ;
+      rdfs:subClassOf :DDR .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4
+:DDR4 rdf:type owl:Class ;
+      rdfs:subClassOf :DDR .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR5
+:DDR5 rdf:type owl:Class ;
+      rdfs:subClassOf :DDR .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DRAM
+:DRAM rdf:type owl:Class ;
+      rdfs:subClassOf :RAM .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DataBusWidth
 :DataBusWidth rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#FSB
 :FSB rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HDD
+:HDD rdf:type owl:Class ;
+     rdfs:subClassOf :HardDisc .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HDDCapacity
+:HDDCapacity rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HDDInterface
+:HDDInterface rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HDDSize
+:HDDSize rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HDDSpeed
+:HDDSpeed rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HardDisc
+:HardDisc rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L1
@@ -158,6 +351,11 @@
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Laptop
 :Laptop rdf:type owl:Class ;
         rdfs:subClassOf :Computer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2
+:M.2 rdf:type owl:Class ;
+     rdfs:subClassOf :SSDFormFactor .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Motherboard
@@ -242,6 +440,30 @@
 :ProcessorSocket rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#RAM
+:RAM rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#RAMCapacity
+:RAMCapacity rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#RAMClockSpeed
+:RAMClockSpeed rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#RAMLayout
+:RAMLayout rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#RAMManufacturer
+:RAMManufacturer rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#RAMMaxCapacity
+:RAMMaxCapacity rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA
 :SATA rdf:type owl:Class .
 
@@ -261,12 +483,62 @@
           rdfs:subClassOf :SATA .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SDR
+:SDR rdf:type owl:Class ;
+     rdfs:subClassOf :SDRAM .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SDRAM
+:SDRAM rdf:type owl:Class ;
+       rdfs:subClassOf :DRAM .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SRAM
+:SRAM rdf:type owl:Class ;
+      rdfs:subClassOf :RAM .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSD
+:SSD rdf:type owl:Class ;
+     rdfs:subClassOf :HardDisc .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSDCapacity
+:SSDCapacity rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSDFormFactor
+:SSDFormFactor rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSDInterface
+:SSDInterface rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSDSpeed
+:SSDSpeed rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SystemBusRate
 :SystemBusRate rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#TotalStorageCapacity
+:TotalStorageCapacity rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#WordSize
 :WordSize rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#mSata
+:mSata rdf:type owl:Class ;
+       rdfs:subClassOf :SSDFormFactor .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#2.5-Inch
+<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#2.5-Inch> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf :SSDFormFactor .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#32-bit
