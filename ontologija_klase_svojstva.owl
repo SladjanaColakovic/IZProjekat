@@ -37,10 +37,30 @@
                         rdfs:range :SSDInterface .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#discreteMemory
+:discreteMemory rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :DiscreteGC ;
+                rdfs:range :DiscreteGCMemory .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#discreteMemoryType
+:discreteMemoryType rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain :DiscreteGC ;
+                    rdfs:range :DiscreteGCMemoryType .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasAddressBusWidth
 :hasAddressBusWidth rdf:type owl:ObjectProperty ;
                     rdfs:domain :Computer ;
                     rdfs:range :DataBusWidth .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasBaseFrequency
+:hasBaseFrequency rdf:type owl:ObjectProperty ;
+                  rdfs:domain :IntegratedGC ;
+                  rdfs:range :IntegratedGCBaseFrequency .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasBoostFrequency
@@ -124,6 +144,12 @@
                 rdfs:range :RAMMaxCapacity .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMaximumFrequency
+:hasMaximumFrequency rdf:type owl:ObjectProperty ;
+                     rdfs:domain :IntegratedGC ;
+                     rdfs:range :IntegratedGCMaximumFrequency .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasPCIe
 :hasPCIe rdf:type owl:ObjectProperty ;
          rdfs:domain :Motherboard ;
@@ -191,6 +217,12 @@
              rdfs:range :WordSize .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#integratedMemory
+:integratedMemory rdf:type owl:ObjectProperty ;
+                  rdfs:domain :IntegratedGC ;
+                  rdfs:range :IntegratedGCMemory .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#layout
 :layout rdf:type owl:ObjectProperty ;
         rdfs:domain :RAM ;
@@ -224,6 +256,12 @@
 :numberOfCores rdf:type owl:DatatypeProperty ;
                rdfs:domain :Processor ;
                rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfDisplaysSupported
+:numberOfDisplaysSupported rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :IntegratedGC ;
+                           rdfs:range xsd:int .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfPCIe
@@ -304,8 +342,29 @@
 :DataBusWidth rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DiscreteGC
+:DiscreteGC rdf:type owl:Class ;
+            rdfs:subClassOf :GraphicsCard .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DiscreteGCMemory
+:DiscreteGCMemory rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DiscreteGCMemoryType
+:DiscreteGCMemoryType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DiscreteGCSlot
+:DiscreteGCSlot rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#FSB
 :FSB rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#GraphicsCard
+:GraphicsCard rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HDD
@@ -331,6 +390,23 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HardDisc
 :HardDisc rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#IntegratedGC
+:IntegratedGC rdf:type owl:Class ;
+              rdfs:subClassOf :GraphicsCard .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#IntegratedGCBaseFrequency
+:IntegratedGCBaseFrequency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#IntegratedGCMaximumFrequency
+:IntegratedGCMaximumFrequency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#IntegratedGCMemory
+:IntegratedGCMemory rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L1
