@@ -51,6 +51,30 @@
                     rdfs:range :DiscreteGCMemoryType .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasACAdapterFrequency
+:hasACAdapterFrequency rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Laptop ;
+                       rdfs:range :ACAdapterFrequency .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasACAdapterInputVoltage
+:hasACAdapterInputVoltage rdf:type owl:ObjectProperty ;
+                          rdfs:domain :Laptop ;
+                          rdfs:range :ACAdapterInputVoltage .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasACAdapterOutputVoltage
+:hasACAdapterOutputVoltage rdf:type owl:ObjectProperty ;
+                           rdfs:domain :Laptop ;
+                           rdfs:range :ACAdapterOutputVoltage .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasACAdapterPower
+:hasACAdapterPower rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Laptop ;
+                   rdfs:range :ACAdapterPower .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasAddressBusWidth
 :hasAddressBusWidth rdf:type owl:ObjectProperty ;
                     rdfs:domain :Computer ;
@@ -88,10 +112,34 @@
             rdfs:range :MotherboardChipset .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDIsplayPanelType
+:hasDIsplayPanelType rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Laptop ;
+                     rdfs:range :DIsplayPanelType .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDIsplayPixelPitch
+:hasDIsplayPixelPitch rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Laptop ;
+                      rdfs:range :DisplayPixelPitch .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDataBusWidth
 :hasDataBusWidth rdf:type owl:ObjectProperty ;
                  rdfs:domain :Computer ;
                  rdfs:range :DataBusWidth .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDisplayDiagonal
+:hasDisplayDiagonal rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Computer ;
+                    rdfs:range :DisplayDiagonal .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDisplayResolution
+:hasDisplayResolution rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Computer ;
+                      rdfs:range :DisplayResolution .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasFormFactor
@@ -156,6 +204,18 @@
          rdfs:range :PCIe .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasPowerSupplyInputFrequency
+:hasPowerSupplyInputFrequency rdf:type owl:ObjectProperty ;
+                              rdfs:domain :PC ;
+                              rdfs:range :PowerSupplyInputFrequency .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasPowerSupplyInputVoltage
+:hasPowerSupplyInputVoltage rdf:type owl:ObjectProperty ;
+                            rdfs:domain :PC ;
+                            rdfs:range :PowerSupplyInputVoltage .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasProcessorSocket
 :hasProcessorSocket rdf:type owl:ObjectProperty ;
                     rdfs:domain :Motherboard ;
@@ -211,6 +271,12 @@
                   rdfs:range :SystemBusRate .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWi-FiStandard
+:hasWi-FiStandard rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Computer ;
+                  rdfs:range :Wi-FiStandard .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWordSize
 :hasWordSize rdf:type owl:ObjectProperty ;
              rdfs:domain :Processor ;
@@ -252,6 +318,42 @@
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#IsTouchable
+:IsTouchable rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Laptop ;
+             rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasBluetooth
+:hasBluetooth rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Computer ;
+              rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasDualScreen
+:hasDualScreen rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Laptop ;
+               rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasEthernetLAN
+:hasEthernetLAN rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Computer ;
+                rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWaterCoolingSystem
+:hasWaterCoolingSystem rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :PC ;
+                       rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWi-Fi
+:hasWi-Fi rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Computer ;
+          rdfs:range xsd:boolean .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfCores
 :numberOfCores rdf:type owl:DatatypeProperty ;
                rdfs:domain :Processor ;
@@ -292,8 +394,29 @@
 #    Classes
 #################################################################
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ACAdapterFrequency
+:ACAdapterFrequency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ACAdapterInputVoltage
+:ACAdapterInputVoltage rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ACAdapterOutputVoltage
+:ACAdapterOutputVoltage rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ACAdapterPower
+:ACAdapterPower rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#AddressBusWidth
 :AddressBusWidth rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#BGA
+:BGA rdf:type owl:Class ;
+     rdfs:subClassOf :ProcessorSocket .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Cache
@@ -333,6 +456,10 @@
       rdfs:subClassOf :DDR .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DIsplayPanelType
+:DIsplayPanelType rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DRAM
 :DRAM rdf:type owl:Class ;
       rdfs:subClassOf :RAM .
@@ -357,6 +484,18 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DiscreteGCSlot
 :DiscreteGCSlot rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DisplayDiagonal
+:DisplayDiagonal rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DisplayPixelPitch
+:DisplayPixelPitch rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DisplayResolution
+:DisplayResolution rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#FSB
@@ -422,6 +561,11 @@
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L3
 :L3 rdf:type owl:Class ;
     rdfs:subClassOf :Cache .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#LGA
+:LGA rdf:type owl:Class ;
+     rdfs:subClassOf :ProcessorSocket .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Laptop
@@ -498,6 +642,19 @@
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x8
 :PCIe_x8 rdf:type owl:Class ;
          rdfs:subClassOf :PCIe .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PGA
+:PGA rdf:type owl:Class ;
+     rdfs:subClassOf :ProcessorSocket .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PowerSupplyInputFrequency
+:PowerSupplyInputFrequency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PowerSupplyInputVoltage
+:PowerSupplyInputVoltage rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Processor
@@ -603,8 +760,17 @@
 :TotalStorageCapacity rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Wi-FiStandard
+:Wi-FiStandard rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#WordSize
 :WordSize rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#ZIF
+:ZIF rdf:type owl:Class ;
+     rdfs:subClassOf :ProcessorSocket .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#mSata
