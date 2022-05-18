@@ -4,9 +4,10 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7> .
+@base <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl> .
 
-<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7> rdf:type owl:Ontology .
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl> rdf:type owl:Ontology ;
+                                                                                                     owl:imports <http://www.semanticweb.org/hp/ontologies/2022/4/untitled-ontology-33> .
 
 #################################################################
 #    Object Properties
@@ -73,6 +74,12 @@
 :hasACAdapterPower rdf:type owl:ObjectProperty ;
                    rdfs:domain :Laptop ;
                    rdfs:range :ACAdapterPower .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasAcceleration
+:hasAcceleration rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Mouse ;
+                 rdfs:range :MouseAcceleration .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasAddressBusWidth
@@ -185,6 +192,12 @@
              rdfs:range :HardDisc .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasKeyboard
+:hasKeyboard rdf:type owl:ObjectProperty ;
+             rdfs:domain :PC ;
+             rdfs:range :Keyboard .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMaxCapacity
 :hasMaxCapacity rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
@@ -196,6 +209,29 @@
 :hasMaximumFrequency rdf:type owl:ObjectProperty ;
                      rdfs:domain :IntegratedGC ;
                      rdfs:range :IntegratedGCMaximumFrequency .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMotherboard
+:hasMotherboard rdf:type owl:ObjectProperty ;
+                rdfs:domain :Computer ;
+                rdfs:range :Motherboard .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMouse
+:hasMouse rdf:type owl:ObjectProperty ;
+          rdfs:domain :Computer ;
+          rdfs:range :Mouse .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMouseResolution
+:hasMouseResolution rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Mouse .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasOperatingSystem
+:hasOperatingSystem rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Computer ;
+                    rdfs:range :OperatingSystem .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasPCIe
@@ -216,10 +252,22 @@
                             rdfs:range :PowerSupplyInputVoltage .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasProcessor
+:hasProcessor rdf:type owl:ObjectProperty ;
+              rdfs:domain :Computer ;
+              rdfs:range :Processor .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasProcessorSocket
 :hasProcessorSocket rdf:type owl:ObjectProperty ;
                     rdfs:domain :Motherboard ;
                     rdfs:range :ProcessorSocket .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasResponse
+:hasResponse rdf:type owl:ObjectProperty ;
+             rdfs:domain :Mouse ;
+             rdfs:range :MouseResponse .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasSATA
@@ -271,6 +319,12 @@
                   rdfs:range :SystemBusRate .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasTracingSpeed
+:hasTracingSpeed rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Mouse ;
+                 rdfs:range :TracingSpeed .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWi-FiStandard
 :hasWi-FiStandard rdf:type owl:ObjectProperty ;
                   rdfs:domain :Computer ;
@@ -289,6 +343,12 @@
                   rdfs:range :IntegratedGCMemory .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#keyboardSupportOperatingSystem
+:keyboardSupportOperatingSystem rdf:type owl:ObjectProperty ;
+                                rdfs:domain :Keyboard ;
+                                rdfs:range :OperatingSystem .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#layout
 :layout rdf:type owl:ObjectProperty ;
         rdfs:domain :RAM ;
@@ -301,17 +361,89 @@
               rdfs:range :RAMManufacturer .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#mouseSupportOperatingSystem
+:mouseSupportOperatingSystem rdf:type owl:ObjectProperty ;
+                             rdfs:domain :Mouse ;
+                             rdfs:range :OperatingSystem .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#socketCompatibility
 :socketCompatibility rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
-                     rdfs:domain :Processor ;
-                     rdfs:range :ProcessorSocket .
+                     rdfs:domain :ProcessorSocket ;
+                     rdfs:range :Processor .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#typeOfMouseConnection
+:typeOfMouseConnection rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Mouse ;
+                       rdfs:range :MouseConnection .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#version
 :version rdf:type owl:ObjectProperty ;
          rdfs:domain :PCIe ;
          rdfs:range :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasL1Cache
+:hasL1Cache rdf:type owl:ObjectProperty ;
+            rdfs:domain :Processor ;
+            rdfs:range :L1 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasL2Cache
+:hasL2Cache rdf:type owl:ObjectProperty ;
+            rdfs:domain :Processor ;
+            rdfs:range :L2 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasL3Cache
+:hasL3Cache rdf:type owl:ObjectProperty ;
+            rdfs:domain :Processor ;
+            rdfs:range :L3 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasMaxMouseResolution
+:hasMaxMouseResolution rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Mouse ;
+                       rdfs:range :MaxMouseResolution .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasMinMouseResolution
+:hasMinMouseResolution rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Mouse ;
+                       rdfs:range :MinMouseResolution .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasTDP
+:hasTDP rdf:type owl:ObjectProperty ;
+        rdfs:domain :Processor ;
+        rdfs:range :TDP .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#providesMaxMemoryBandwidth
+:providesMaxMemoryBandwidth rdf:type owl:ObjectProperty ;
+                            rdfs:domain :Processor ;
+                            rdfs:range :MaxMemoryBandwidth .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#supportMaxMemory
+:supportMaxMemory rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Processor ;
+                  rdfs:range :MaxMemorySize .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#typeOfKeyboardBacklight
+:typeOfKeyboardBacklight rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Keyboard ;
+                         rdfs:range :KeyboardBacklight .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#typeOfMouseBacklight
+:typeOfMouseBacklight rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Mouse ;
+                      rdfs:range :MouseBacklight .
 
 
 #################################################################
@@ -388,6 +520,18 @@
 :numberOfThreads rdf:type owl:DatatypeProperty ;
                  rdfs:domain :Processor ;
                  rdfs:range xsd:int .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasKeyboardBacklight
+:hasKeyboardBacklight rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :Keyboard ;
+                      rdfs:range xsd:boolean .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasMouseBacklight
+:hasMouseBacklight rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Mouse ;
+                   rdfs:range xsd:boolean .
 
 
 #################################################################
@@ -548,6 +692,14 @@
 :IntegratedGCMemory rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Keyboard
+:Keyboard rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#KeyboardBacklight
+:KeyboardBacklight rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L1
 :L1 rdf:type owl:Class ;
     rdfs:subClassOf :Cache .
@@ -586,29 +738,29 @@
 :MotherboardChipset rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Mouse
+:Mouse rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#MouseAcceleration
+:MouseAcceleration rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#MouseConnection
+:MouseConnection rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#MouseResponse
+:MouseResponse rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#OperatingSystem
+:OperatingSystem rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PC
 :PC rdf:type owl:Class ;
     rdfs:subClassOf :Computer .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_1.0
-:PCI_Express_1.0 rdf:type owl:Class ;
-                 rdfs:subClassOf :PCIeVersion .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_2.0
-:PCI_Express_2.0 rdf:type owl:Class ;
-                 rdfs:subClassOf :PCIeVersion .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_3.0
-:PCI_Express_3.0 rdf:type owl:Class ;
-                 rdfs:subClassOf :PCIeVersion .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_4.0
-:PCI_Express_4.0 rdf:type owl:Class ;
-                 rdfs:subClassOf :PCIeVersion .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe
@@ -617,31 +769,6 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIeVersion
 :PCIeVersion rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x1
-:PCIe_x1 rdf:type owl:Class ;
-         rdfs:subClassOf :PCIe .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x16
-:PCIe_x16 rdf:type owl:Class ;
-          rdfs:subClassOf :PCIe .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x2
-:PCIe_x2 rdf:type owl:Class ;
-         rdfs:subClassOf :PCIe .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x4
-:PCIe_x4 rdf:type owl:Class ;
-         rdfs:subClassOf :PCIe .
-
-
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x8
-:PCIe_x8 rdf:type owl:Class ;
-         rdfs:subClassOf :PCIe .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PGA
@@ -760,8 +887,17 @@
 :TotalStorageCapacity rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#TracingSpeed
+:TracingSpeed rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Wi-FiStandard
 :Wi-FiStandard rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Wireless
+:Wireless rdf:type owl:Class ;
+          rdfs:subClassOf :MouseConnection .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#WordSize
@@ -778,19 +914,603 @@
        rdfs:subClassOf :SSDFormFactor .
 
 
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#2.5-Inch
-<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#2.5-Inch> rdf:type owl:Class ;
-                                                                               rdfs:subClassOf :SSDFormFactor .
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MaxMemoryBandwidth
+:MaxMemoryBandwidth rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#32-bit
-<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#32-bit> rdf:type owl:Class ;
-                                                                             rdfs:subClassOf :WordSize .
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MaxMemorySize
+:MaxMemorySize rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#64-bit
-<http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#64-bit> rdf:type owl:Class ;
-                                                                             rdfs:subClassOf :WordSize .
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MaxMouseResolution
+:MaxMouseResolution rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MinMouseResolution
+:MinMouseResolution rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MouseBacklight
+:MouseBacklight rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIEe_x8
+:PCIEe_x8 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIe .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_1.0
+:PCIe_1.0 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_2.0
+:PCIe_2.0 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_3.0
+:PCIe_3.0 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_4.0
+:PCIe_4.0 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x1
+:PCIe_x1 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x16
+:PCIe_x16 rdf:type owl:Class ;
+          rdfs:subClassOf :PCIe .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x2
+:PCIe_x2 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x4
+:PCIe_x4 rdf:type owl:Class ;
+         rdfs:subClassOf :PCIe .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#TDP
+:TDP rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Wired
+:Wired rdf:type owl:Class ;
+       rdfs:subClassOf :MouseConnection .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.5-Inch
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.5-Inch> rdf:type owl:Class ;
+                                                                                                             rdfs:subClassOf :SSDFormFactor .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32-bit
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32-bit> rdf:type owl:Class ;
+                                                                                                           rdfs:subClassOf :WordSize .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit> rdf:type owl:Class ;
+                                                                                                           rdfs:subClassOf :WordSize .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#FCBGA1440
+:FCBGA1440 rdf:type owl:NamedIndividual ,
+                    :ProcessorSocket ;
+           :socketCompatibility :Intel_Core_i5-9300H_Quad_Core ,
+                                :Intel_Core_i5-9400H ,
+                                :Intel_Core_i7-9850H .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HP_Laptop_Pavilion_6WC31UA_NOT16778
+:HP_Laptop_Pavilion_6WC31UA_NOT16778 rdf:type owl:NamedIndividual ,
+                                              :Laptop ;
+                                     :hasMotherboard :HP_Laptop_Pavilion_6WC31UA_NOT16778_Motherboard ;
+                                     :hasMouse :Fantech_VX7_Crypto_Sakura ;
+                                     :hasOperatingSystem :Windows_10 ;
+                                     :hasProcessor :Intel_Core_i5-9300H_Quad_Core .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HP_Laptop_Pavilion_6WC31UA_NOT16778_Motherboard
+:HP_Laptop_Pavilion_6WC31UA_NOT16778_Motherboard rdf:type owl:NamedIndividual ,
+                                                          :Motherboard ;
+                                                 :hasChipset :Intel_HM370 ;
+                                                 :hasPCIe :PCIe_x16_first_laptop ;
+                                                 :hasProcessorSocket :FCBGA1440 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Intel_Core_i5-9300H_Quad_Core
+:Intel_Core_i5-9300H_Quad_Core rdf:type owl:NamedIndividual ,
+                                        :Processor ;
+                               :hasBoostFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.1_GHz> ;
+                               :hasFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.4_GHz> ;
+                               :hasSystemBusRate <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8GT/s> ;
+                               :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
+                               :hasL1Cache :L1_cache_i5-9300H ;
+                               :hasL2Cache :L2_cache_i5-9300H ;
+                               :hasL3Cache :Intel_Smart_cache ;
+                               :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#45W> ;
+                               :numberOfCores 4 ;
+                               :numberOfThreads 8 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Intel_HM370
+:Intel_HM370 rdf:type owl:NamedIndividual ,
+                      :MotherboardChipset ;
+             :chipsetCompatibility :Intel_Core_i5-9300H_Quad_Core ,
+                                   :Intel_Core_i5-9400H ,
+                                   :Intel_Core_i7-9850H .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Intel_Smart_cache
+:Intel_Smart_cache rdf:type owl:NamedIndividual ,
+                            :L3 ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_MB> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_3.0
+:PCI_Express_3.0 rdf:type owl:NamedIndividual ,
+                          :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#AM4
+:AM4 rdf:type owl:NamedIndividual ,
+              :ProcessorSocket ;
+     :socketCompatibility :AMD_Ryzen_5_5600X_Hexa_Core ,
+                          :AMD_Ryzen_7_5800X .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#AMD_B550
+:AMD_B550 rdf:type owl:NamedIndividual ,
+                   :MotherboardChipset ;
+          :chipsetCompatibility :AMD_Ryzen_5_5600X_Hexa_Core ,
+                                :AMD_Ryzen_7_5800X .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#AMD_Ryzen_5_5600X_Hexa_Core
+:AMD_Ryzen_5_5600X_Hexa_Core rdf:type owl:NamedIndividual ,
+                                      :Processor ;
+                             :hasBoostFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.6_GHz> ;
+                             :hasFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.7_GHz> ;
+                             :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
+                             :hasL1Cache :L1_cache_AMD_Ryzen_5_5600X ;
+                             :hasL2Cache :L2_cache_AMD_Ryzen_5_5600X ;
+                             :hasL3Cache :L3_cache_AMD_Ryzen_5_5600X ;
+                             :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#65W> ;
+                             :numberOfCores 6 ;
+                             :numberOfThreads 12 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#AMD_Ryzen_7_5800X
+:AMD_Ryzen_7_5800X rdf:type owl:NamedIndividual ,
+                            :Processor ;
+                   :hasBoostFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.7_GHz> ;
+                   :hasFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.8_GHz> ;
+                   :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
+                   :hasL1Cache :L1_cache_AMD_Ryzen_7_5800X ;
+                   :hasL2Cache :L2_cache_AMD_Ryzen_7_5800X ;
+                   :hasL3Cache :L3_cache_AMD_Ryzen_7_5800X ;
+                   :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#105W> ;
+                   :numberOfCores 8 ;
+                   :numberOfThreads 16 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Altos_Desktop_computer_Ampere_V
+:Altos_Desktop_computer_Ampere_V rdf:type owl:NamedIndividual ,
+                                          :PC ;
+                                 :hasKeyboard :White_Shark_Tastatura_GK-1923_Gladiator_2 ;
+                                 :hasMotherboard :Asus_Prime_B550M-A ;
+                                 :hasMouse :Asus_ROG_Strix_Impact_II ;
+                                 :hasOperatingSystem :Windows_10 ;
+                                 :hasProcessor :AMD_Ryzen_5_5600X_Hexa_Core .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Asus_Prime_B550M-A
+:Asus_Prime_B550M-A rdf:type owl:NamedIndividual ,
+                             :Motherboard ;
+                    :hasChipset :AMD_B550 ;
+                    :hasPCIe :PCIe_x16_first_pc ,
+                             :PCIe_x16_first_pc_second ,
+                             :PCIe_x1_first_pc ;
+                    :hasProcessorSocket :AM4 ;
+                    :hasSATA :SATA_III_first_pc .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Asus_ROG_Strix_Impact_II
+:Asus_ROG_Strix_Impact_II rdf:type owl:NamedIndividual ,
+                                   :Mouse ;
+                          :hasAcceleration <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#40_G> ;
+                          :hasResponse <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1000_Hz> ;
+                          :mouseSupportOperatingSystem :Windows_10 ;
+                          :typeOfMouseConnection :Wired_mouse_connection ,
+                                                 :Wireless_mouse_connection ;
+                          :hasMaxMouseResolution <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#16000_dpi> ;
+                          :hasMinMouseResolution <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#100_dpi> ;
+                          :typeOfMouseBacklight :RGB ;
+                          :hasMouseBacklight "true"^^xsd:boolean .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Cool_Rainbow_LED
+:Cool_Rainbow_LED rdf:type owl:NamedIndividual ,
+                           :KeyboardBacklight .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Fantech_VX7_Crypto_Sakura
+:Fantech_VX7_Crypto_Sakura rdf:type owl:NamedIndividual ,
+                                    :Mouse ;
+                           :hasAcceleration <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#15_G> ;
+                           :hasResponse <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#125_Hz> ;
+                           :mouseSupportOperatingSystem :Windows_10 ,
+                                                        :Windows_7 ,
+                                                        :Windows_8 ;
+                           :typeOfMouseConnection :Wired_mouse_connection ;
+                           :hasMaxMouseResolution <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#800_dpi> ;
+                           :hasMinMouseResolution <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#200_dpi> ;
+                           :typeOfMouseBacklight <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_LED_colors> ;
+                           :hasMouseBacklight "true"^^xsd:boolean .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Intel_Core_i5-9400H
+:Intel_Core_i5-9400H rdf:type owl:NamedIndividual ,
+                              :Processor ;
+                     :hasBoostFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.3_GHz> ;
+                     :hasFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.5_GHz> ;
+                     :hasSystemBusRate <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8GT/s> ;
+                     :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
+                     :hasL1Cache :L1_cache_i5-9400H ;
+                     :hasL2Cache :L2_cache_i5-9400H ;
+                     :hasL3Cache :L3_cache_i5-9400H ;
+                     :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#45W> ;
+                     :numberOfCores 4 ;
+                     :numberOfThreads 8 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Intel_Core_i7-9850H
+:Intel_Core_i7-9850H rdf:type owl:NamedIndividual ,
+                              :Processor ;
+                     :hasBoostFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.6_GHz> ;
+                     :hasFrequency <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.6_GHz> ;
+                     :hasSystemBusRate <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8GT/s> ;
+                     :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
+                     :hasL1Cache :L1_cache_i7-9850H ;
+                     :hasL2Cache :L2_cache_i7-9850H ;
+                     :hasL3Cache :L3_cache_i7-9850H ;
+                     :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#45W> ;
+                     :numberOfCores 6 ;
+                     :numberOfThreads 12 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L1_cache_AMD_Ryzen_5_5600X
+:L1_cache_AMD_Ryzen_5_5600X rdf:type owl:NamedIndividual ,
+                                     :L1 ;
+                            :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#384_KB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L1_cache_AMD_Ryzen_7_5800X
+:L1_cache_AMD_Ryzen_7_5800X rdf:type owl:NamedIndividual ,
+                                     :L1 ;
+                            :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#512_KB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L1_cache_i5-9300H
+:L1_cache_i5-9300H rdf:type owl:NamedIndividual ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#256_KB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L1_cache_i5-9400H
+:L1_cache_i5-9400H rdf:type owl:NamedIndividual ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#256_KB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L1_cache_i7-9850H
+:L1_cache_i7-9850H rdf:type owl:NamedIndividual ,
+                            :L1 ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#384_KB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L2_cache_AMD_Ryzen_5_5600X
+:L2_cache_AMD_Ryzen_5_5600X rdf:type owl:NamedIndividual ,
+                                     :L2 ;
+                            :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L2_cache_AMD_Ryzen_7_5800X
+:L2_cache_AMD_Ryzen_7_5800X rdf:type owl:NamedIndividual ,
+                                     :L2 ;
+                            :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L2_cache_i5-9300H
+:L2_cache_i5-9300H rdf:type owl:NamedIndividual ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L2_cache_i5-9400H
+:L2_cache_i5-9400H rdf:type owl:NamedIndividual ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L2_cache_i7-9850H
+:L2_cache_i7-9850H rdf:type owl:NamedIndividual ,
+                            :L2 ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1.5_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L3_cache_AMD_Ryzen_5_5600X
+:L3_cache_AMD_Ryzen_5_5600X rdf:type owl:NamedIndividual ,
+                                     :L3 ;
+                            :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L3_cache_AMD_Ryzen_7_5800X
+:L3_cache_AMD_Ryzen_7_5800X rdf:type owl:NamedIndividual ,
+                                     :L3 ;
+                            :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L3_cache_i5-9400H
+:L3_cache_i5-9400H rdf:type owl:NamedIndividual ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#L3_cache_i7-9850H
+:L3_cache_i7-9850H rdf:type owl:NamedIndividual ,
+                            :L3 ;
+                   :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#12_MB> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCI_Express_4.0
+:PCI_Express_4.0 rdf:type owl:NamedIndividual ,
+                          :PCIeVersion .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x16_first_laptop
+:PCIe_x16_first_laptop rdf:type owl:NamedIndividual ,
+                                :PCIe_x16 ;
+                       :version :PCI_Express_3.0 ;
+                       :numberOfPCIe 1 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x16_first_pc
+:PCIe_x16_first_pc rdf:type owl:NamedIndividual ,
+                            :PCIe_x16 ;
+                   :version :PCI_Express_4.0 ;
+                   :numberOfPCIe 1 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x16_first_pc_second
+:PCIe_x16_first_pc_second rdf:type owl:NamedIndividual ,
+                                   :PCIe_x16 ;
+                          :version :PCI_Express_3.0 ;
+                          :numberOfPCIe 1 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_x1_first_pc
+:PCIe_x1_first_pc rdf:type owl:NamedIndividual ,
+                           :PCIe_x1 ;
+                  :version :PCI_Express_3.0 ;
+                  :numberOfPCIe 2 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#RGB
+:RGB rdf:type owl:NamedIndividual ,
+              :MouseBacklight .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#SATA_III_first_pc
+:SATA_III_first_pc rdf:type owl:NamedIndividual ,
+                            :SATA_III ;
+                   :numberOfSata 4 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#White_Shark_Tastatura_GK-1923_Gladiator_2
+:White_Shark_Tastatura_GK-1923_Gladiator_2 rdf:type owl:NamedIndividual ,
+                                                    :Keyboard ;
+                                           :typeOfKeyboardBacklight :Cool_Rainbow_LED ;
+                                           :hasKeyboardBacklight "true"^^xsd:boolean .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Windows_10
+:Windows_10 rdf:type owl:NamedIndividual ,
+                     :OperatingSystem .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Windows_7
+:Windows_7 rdf:type owl:NamedIndividual ,
+                    :OperatingSystem .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Windows_8
+:Windows_8 rdf:type owl:NamedIndividual ,
+                    :OperatingSystem .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Wired_mouse_connection
+:Wired_mouse_connection rdf:type owl:NamedIndividual ,
+                                 :Wired .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#Wireless_mouse_connection
+:Wireless_mouse_connection rdf:type owl:NamedIndividual ,
+                                    :Wireless .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                  :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1.5_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1.5_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                    :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#100_dpi
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#100_dpi> rdf:type owl:NamedIndividual ,
+                                                                                                                     :MinMouseResolution .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1000_Hz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1000_Hz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :MouseResponse .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#105W
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#105W> rdf:type owl:NamedIndividual ,
+                                                                                                                  :TDP .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#12_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#12_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                   :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#125_Hz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#125_Hz> rdf:type owl:NamedIndividual ,
+                                                                                                                    :MouseResponse .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#15_G
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#15_G> rdf:type owl:NamedIndividual ,
+                                                                                                                  :MouseAcceleration .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#16000_dpi
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#16000_dpi> rdf:type owl:NamedIndividual ,
+                                                                                                                       :MaxMouseResolution .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.4_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.4_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.5_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.5_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.6_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2.6_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#200_dpi
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#200_dpi> rdf:type owl:NamedIndividual ,
+                                                                                                                     :MinMouseResolution .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#256_KB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#256_KB> rdf:type owl:NamedIndividual ,
+                                                                                                                    :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                  :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.7_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.7_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.8_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.8_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                   :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#384_KB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#384_KB> rdf:type owl:NamedIndividual ,
+                                                                                                                    :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_LED_colors
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_LED_colors> rdf:type owl:NamedIndividual ,
+                                                                                                                          :MouseBacklight .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                  :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.1_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.1_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorBoostFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.3_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.3_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorBoostFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.6_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.6_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorBoostFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.7_GHz
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.7_GHz> rdf:type owl:NamedIndividual ,
+                                                                                                                     :ProcessorBoostFrequency .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#40_G
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#40_G> rdf:type owl:NamedIndividual ,
+                                                                                                                  :MouseAcceleration .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#45W
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#45W> rdf:type owl:NamedIndividual ,
+                                                                                                                 :TDP .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#512_KB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#512_KB> rdf:type owl:NamedIndividual ,
+                                                                                                                    :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> rdf:type owl:NamedIndividual ,
+                                                                                                                              <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit> .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#65W
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#65W> rdf:type owl:NamedIndividual ,
+                                                                                                                 :TDP .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_MB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_MB> rdf:type owl:NamedIndividual ,
+                                                                                                                  :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#800_dpi
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#800_dpi> rdf:type owl:NamedIndividual ,
+                                                                                                                     :MaxMouseResolution .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8GT/s
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8GT/s> rdf:type owl:NamedIndividual ,
+                                                                                                                   :SystemBusRate .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
