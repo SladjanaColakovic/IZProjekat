@@ -428,12 +428,6 @@
                             rdfs:range :MaxMemoryBandwidth .
 
 
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#supportMaxMemory
-:supportMaxMemory rdf:type owl:ObjectProperty ;
-                  rdfs:domain :Processor ;
-                  rdfs:range :MaxMemorySize .
-
-
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#typeOfKeyboardBacklight
 :typeOfKeyboardBacklight rdf:type owl:ObjectProperty ;
                          rdfs:domain :Keyboard ;
@@ -916,10 +910,6 @@
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MaxMemoryBandwidth
 :MaxMemoryBandwidth rdf:type owl:Class .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MaxMemorySize
-:MaxMemorySize rdf:type owl:Class .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#MaxMouseResolution
