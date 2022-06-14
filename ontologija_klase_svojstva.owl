@@ -1574,12 +1574,14 @@
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L2_cache_i5-9300H
-:L2_cache_i5-9300H rdf:type owl:NamedIndividual ;
+:L2_cache_i5-9300H rdf:type owl:NamedIndividual ,
+                            :L2 ;
                    :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L2_cache_i5-9400H
-:L2_cache_i5-9400H rdf:type owl:NamedIndividual ;
+:L2_cache_i5-9400H rdf:type owl:NamedIndividual ,
+                            :L2 ;
                    :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> .
 
 
@@ -1591,7 +1593,8 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L3_cache_AMD_3015e
 :L3_cache_AMD_3015e rdf:type owl:NamedIndividual ,
-                             :L3 .
+                             :L3 ;
+                    :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB> .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#L3_cache_AMD_3020e
@@ -1915,8 +1918,7 @@
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> rdf:type owl:NamedIndividual ,
-                                                                                                                  :CacheCapacity ;
-                                                                                                         :hasCacheCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB> .
+                                                                                                                  :CacheCapacity .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_TB
