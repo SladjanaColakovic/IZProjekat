@@ -269,7 +269,7 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasProcessor
 :hasProcessor rdf:type owl:ObjectProperty ;
-              rdfs:domain :Computer ;
+              rdfs:domain :Motherboard ;
               rdfs:range :Processor .
 
 
@@ -281,7 +281,7 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasRAM
 :hasRAM rdf:type owl:ObjectProperty ;
-        rdfs:domain :Computer ;
+        rdfs:domain :Motherboard ;
         rdfs:range :RAM .
 
 
@@ -1069,8 +1069,6 @@
                                  :hasMotherboard :Asus_Prime_B550M-A ;
                                  :hasMouse :Asus_ROG_Strix_Impact_II ;
                                  :hasOperatingSystem :Windows_10 ;
-                                 :hasProcessor :AMD_Ryzen_5_5600X_Hexa_Core ;
-                                 :hasRAM :DDR4_first_pc ;
                                  :IsTouchable "false"^^xsd:boolean ;
                                  :hasBluetooth "true"^^xsd:boolean ;
                                  :hasEthernetLAN "true"^^xsd:boolean ;
@@ -1086,8 +1084,6 @@
                                 :hasMotherboard :Gigabyte_H410M_S2H_V3_G10 ;
                                 :hasMouse :Fantech_T533 ;
                                 :hasOperatingSystem :Windows_8 ;
-                                :hasProcessor :Intel_Core_i3-10105 ;
-                                :hasRAM :DDR4_second_pc ;
                                 :IsTouchable "false"^^xsd:boolean ;
                                 :hasBluetooth "true"^^xsd:boolean ;
                                 :hasEthernetLAN "true"^^xsd:boolean ;
@@ -1102,7 +1098,9 @@
                     :hasPCIe :PCIe_x16_first_pc ,
                              :PCIe_x16_first_pc_second ,
                              :PCIe_x1_first_pc ;
+                    :hasProcessor :AMD_Ryzen_5_5600X_Hexa_Core ;
                     :hasProcessorSocket :AM4 ;
+                    :hasRAM :DDR4_first_pc ;
                     :hasSATA :SATA_III_first_pc ;
                     :numberOfRamSlots 4 .
 
@@ -1149,7 +1147,8 @@
       :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_GB_RAM> ;
       :hasMaxCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#16_GB_RAM_max> ;
       :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2666_MHz> ;
-      :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x8GB> .
+      :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x8GB> ;
+      :manufacturer :Kingston .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4_first_pc
@@ -1323,7 +1322,9 @@
                            :hasGraphicsCard :Intel_UHD_610 ;
                            :hasPCIe :PCIe_x16_second_pc ,
                                     :PCIe_x1_second_pc ;
+                           :hasProcessor :Intel_Core_i3-10105 ;
                            :hasProcessorSocket :LGA1200 ;
+                           :hasRAM :DDR4_second_pc ;
                            :hasSATA :SATA_III_second_pc ;
                            :numberOfRamSlots 2 .
 
@@ -1344,8 +1345,6 @@
                                      :hasMotherboard :HP_Laptop_Pavilion_6WC31UA_NOT16778_Motherboard ;
                                      :hasMouse :Fantech_VX7_Crypto_Sakura ;
                                      :hasOperatingSystem :Windows_10 ;
-                                     :hasProcessor :Intel_Core_i5-9300H_Quad_Core ;
-                                     :hasRAM :DDR4 ;
                                      :IsTouchable "false"^^xsd:boolean ;
                                      :hasBluetooth "true"^^xsd:boolean ;
                                      :hasEthernetLAN "true"^^xsd:boolean ;
@@ -1358,7 +1357,9 @@
                                                  :hasChipset :Intel_HM370 ;
                                                  :hasGraphicsCard :nVidia_GeForce_GTX_1650 ;
                                                  :hasPCIe :PCIe_x16_first_laptop ;
+                                                 :hasProcessor :Intel_Core_i5-9300H_Quad_Core ;
                                                  :hasProcessorSocket :FCBGA1440 ;
+                                                 :hasRAM :DDR4 ;
                                                  :numberOfRamSlots 3 .
 
 
@@ -1654,8 +1655,6 @@
                           :hasMotherboard :Lenovo_Laptop_81W100K2YA_Motherboard ;
                           :hasMouse :GENIUS_DX_110_G5 ;
                           :hasOperatingSystem :FreeDOS ;
-                          :hasProcessor :AMD_3020e_Dual_Core ;
-                          :hasRAM :DDR4_second_laptop ;
                           :IsTouchable "false"^^xsd:boolean ;
                           :hasBluetooth "true"^^xsd:boolean ;
                           :hasEthernetLAN "true"^^xsd:boolean ;
@@ -1668,7 +1667,10 @@
                                       :hasChipset :AMD_SoC_Platform ;
                                       :hasGraphicsCard :AMD_Radeon_Graphics ;
                                       :hasPCIe :PCIe_x2_second_laptop ;
-                                      :hasProcessorSocket :FT5 .
+                                      :hasProcessor :AMD_3020e_Dual_Core ;
+                                      :hasProcessorSocket :FT5 ;
+                                      :hasRAM :DDR4_second_laptop ;
+                                      :numberOfRamSlots 2 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Lithium-Ion
