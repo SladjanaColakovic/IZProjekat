@@ -429,6 +429,12 @@
          rdfs:range :PCIeVersion .
 
 
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#providesMaxRAMCapacity
+:providesMaxRAMCapacity rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Processor ;
+                        rdfs:range :RAMMaxCapacity .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -1005,6 +1011,7 @@
                      :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#6_W> ;
                      :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
                      :providesMaxMemoryBandwidth <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#35.76_GB/s> ;
+                     :providesMaxRAMCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_GB_RAM_max> ;
                      :numberOfCores 2 ;
                      :numberOfThreads 2 .
 
@@ -1034,6 +1041,7 @@
                              :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#65W> ;
                              :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
                              :providesMaxMemoryBandwidth <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#47.68_GB/s> ;
+                             :providesMaxRAMCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#128_GB_RAM_max> ;
                              :numberOfCores 6 ;
                              :numberOfThreads 12 .
 
@@ -1145,7 +1153,6 @@
 :DDR4 rdf:type owl:NamedIndividual ,
                :DDR4 ;
       :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_GB_RAM> ;
-      :hasMaxCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#16_GB_RAM_max> ;
       :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2666_MHz> ;
       :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x8GB> ;
       :manufacturer :Kingston .
@@ -1155,7 +1162,6 @@
 :DDR4_first_pc rdf:type owl:NamedIndividual ,
                         :DDR4 ;
                :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_GB_RAM> ;
-               :hasMaxCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#128_GB_RAM_max> ;
                :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
                :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x16GB> ;
                :manufacturer :Kingston .
@@ -1165,16 +1171,15 @@
 :DDR4_second_laptop rdf:type owl:NamedIndividual ,
                              :DDR4 ;
                     :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_GB_RAM> ;
-                    :hasMaxCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#32_GB_RAM_max> ;
                     :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2400_MHz> ;
-                    :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x4GB> .
+                    :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x4GB> ;
+                    :manufacturer :Kingston .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4_second_pc
 :DDR4_second_pc rdf:type owl:NamedIndividual ,
                          :DDR4 ;
                 :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_GB_RAM> ;
-                :hasMaxCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#128_GB_RAM_max> ;
                 :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
                 :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x8GB> ;
                 :manufacturer :Geil .
@@ -1385,6 +1390,7 @@
                      :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#65W> ;
                      :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
                      :providesMaxMemoryBandwidth <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#41.6_GB/s> ;
+                     :providesMaxRAMCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#128_GB_RAM_max> ;
                      :numberOfCores 4 ;
                      :numberOfThreads 8 .
 
@@ -1417,6 +1423,7 @@
                                :hasTDP <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#45W> ;
                                :hasWordSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64-bit_word_size> ;
                                :providesMaxMemoryBandwidth <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#41.8_GB/s> ;
+                               :providesMaxRAMCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#16_GB_RAM_max> ;
                                :numberOfCores 4 ;
                                :numberOfThreads 8 .
 
