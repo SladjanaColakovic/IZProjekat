@@ -26,20 +26,23 @@ import org.springframework.asm.TypeReference;
 import org.springframework.stereotype.Service;
 
 import com.projekat.inzinjering.dto.BetterRAMDTO;
+import com.projekat.inzinjering.dto.RAMSuggestionDTO;
 
 @Service
 public class ComponentSuggestionService {
 	
 	Model model = ModelFactory.createDefaultModel();
-	public List<BetterRAMDTO> ramSuggestion() {
+	public List<BetterRAMDTO> ramSuggestion(RAMSuggestionDTO ramSuggestion) {
 			List<BetterRAMDTO> result = new ArrayList<>();
 		try {
 			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
 	        RDFDataMgr.read(model,is,Lang.TURTLE);   
-	        int slotNum = ramSlots();
+	        int slotNum = ramSlots(ramSuggestion.getMotherboard());
 	        if(slotNum != 0) {
-	        	int maxRam = maxRamCapacity();
-	        	String ram = ram();
+	        	String pc = findPC(ramSuggestion.getMotherboard());
+	        	String processor = findProcessor(pc);
+	        	int maxRam = maxRamCapacity(processor);
+	        	String ram = ram(ramSuggestion.getMotherboard());
 	        	System.out.println(ram);
 	        	int speed = ramSpeed(ram);
 	        	int capacity = ramCapacity(ram);
@@ -66,6 +69,119 @@ public class ComponentSuggestionService {
 			e.printStackTrace();
 		} 
 		return result;
+	}
+	
+	public List<String> getMotherboards(){
+		List<String> result = new ArrayList<>();
+		try {
+			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
+	        RDFDataMgr.read(model,is,Lang.TURTLE);  
+			String queryString = 
+	        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+	                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+	        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+	                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+	                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+	                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+	                + "SELECT  ?motherboard "
+	                +"WHERE "
+	                + "{ "
+	                +"[]"
+	                + " base:hasMotherboard "
+	                +"?motherboard"
+	                +" .} ";
+	        Query query = QueryFactory.create(queryString);
+	        System.out.println(query);
+	        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+	        try {
+	            ResultSet results = qexec.execSelect();
+	            while (results.hasNext()) {
+	                QuerySolution solution = results.nextSolution();
+	                Resource r = solution.getResource("motherboard");
+	                String motherboard = r.getLocalName();
+	                System.out.println(motherboard);
+	                result.add(motherboard);
+	            }
+	            return result;
+	        } catch(Exception e) {
+	        	e.printStackTrace();
+	        }finally {
+	            qexec.close();
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+			
+		return result;
+	}
+	
+	private String findPC(String motherboard) {
+		String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?pc "
+                +"WHERE "
+                + "{"
+                +"?pc"
+                + " base:hasMotherboard "
+                +"base:"
+                + motherboard
+                +" . } ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("pc");
+                return r.getLocalName();  
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return "";				
+	}
+	
+	private String findProcessor(String pc) {
+		String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?processor "
+                +"WHERE "
+                + "{"
+                + "base:"
+                + pc
+                + " base:hasProcessor "
+                + "?processor"
+                +" . } ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("processor");
+                return r.getLocalName();  
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return "";
+		
 	}
 	
 	private List<String> rams(String ramType, String currentRam) {
@@ -232,8 +348,7 @@ public class ComponentSuggestionService {
         return "";		
 	}
 	
-	private String ram() {		
-		String motherboard = "Gigabyte_H410M_S2H_V3_G10";
+	private String ram(String motherboard) {		
 		String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -378,8 +493,7 @@ public class ComponentSuggestionService {
 	}
 
 	
-	private int ramSlots() {
-		String motherboard = "Gigabyte_H410M_S2H_V3_G10";
+	private int ramSlots(String motherboard) {
         String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -414,9 +528,8 @@ public class ComponentSuggestionService {
         return 0;		
 	}
 	
-	private int maxRamCapacity() {
+	private int maxRamCapacity(String processor) {
 	
-		String processor = "AMD_Ryzen_5_5600X_Hexa_Core";
 		String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"

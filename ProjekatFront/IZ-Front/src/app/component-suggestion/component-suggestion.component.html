@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-6">
+        <div class="part1">
+            <label for="motherboard">Motherboard</label>
+            <select [(ngModel)]="selectedMotherboard" id="motherboard" name="motherboard" (change)="suggest()">
+                <option *ngFor="let m of motherboards" [ngValue]="m">{{m}}</option>
+            </select>
+
+            <button (click)="suggest()">Suggest</button>
+
+        </div>
+    </div>
+    <div *ngIf = "rams != null" class="col-6">
+        <div class="part2">
+            <h2>RAM</h2>
+            <ul *ngFor="let ram of rams">
+                <li>{{ram.manufacturer}} {{ram.type}}-{{ram.speed}} {{ram.capacity}}GB {{ram.layout}}</li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
