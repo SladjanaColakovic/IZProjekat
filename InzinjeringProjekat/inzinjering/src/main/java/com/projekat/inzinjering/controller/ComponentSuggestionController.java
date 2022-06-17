@@ -50,5 +50,12 @@ public class ComponentSuggestionController
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/processors")
+	public ResponseEntity<?> processors() {
+		List<String> result = suggestionService.getProcessors();
+		System.out.println(result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	
 }  

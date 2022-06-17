@@ -115,6 +115,50 @@ public class ComponentSuggestionService {
 		return result;
 	}
 	
+	public List<String> getProcessors(){
+		List<String> result = new ArrayList<>();
+		try {
+			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
+	        RDFDataMgr.read(model,is,Lang.TURTLE);  
+			String queryString = 
+	        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+	                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+	        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+	                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+	                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+	                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+	                + "SELECT  ?processor "
+	                +"WHERE "
+	                + "{ "
+	                +"?processor"
+	                + " rdf:type "
+	                +"base:Processor"
+	                +" .} ";
+	        Query query = QueryFactory.create(queryString);
+	        System.out.println(query);
+	        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+	        try {
+	            ResultSet results = qexec.execSelect();
+	            while (results.hasNext()) {
+	                QuerySolution solution = results.nextSolution();
+	                Resource r = solution.getResource("processor");
+	                String motherboard = r.getLocalName();
+	                System.out.println(motherboard);
+	                result.add(motherboard);
+	            }
+	            return result;
+	        } catch(Exception e) {
+	        	e.printStackTrace();
+	        }finally {
+	            qexec.close();
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+			
+		return result;
+	}
+	
 	private String findPC(String motherboard) {
 		String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"

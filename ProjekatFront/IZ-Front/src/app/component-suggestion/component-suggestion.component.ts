@@ -11,7 +11,9 @@ export class ComponentSuggestionComponent implements OnInit {
   constructor(public service: SuggestionComponentService) { }
 
   motherboards: any[];
+  processors: any[];
   selectedMotherboard = "";
+  selectedProcessor = "";
   rams: any[];
 
 
@@ -19,10 +21,14 @@ export class ComponentSuggestionComponent implements OnInit {
     this.service.getMotherboards().subscribe((response: any) => {
       this.motherboards = response;
       console.log(this.motherboards)
+      this.service.getProcessors().subscribe((response: any) => {
+        this.processors = response;
+        console.log(this.processors)
+      })
     })
   }
 
-  suggest(){
+  suggestRam(){
     console.log(this.selectedMotherboard);
     let data = {
       motherboard: this.selectedMotherboard
