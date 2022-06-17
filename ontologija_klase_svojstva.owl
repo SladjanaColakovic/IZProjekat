@@ -1934,6 +1934,20 @@
                      :manufacturer :Kingston .
 
 
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#DDR4_second_instance
+:DDR4_second_instance rdf:type owl:NamedIndividual ,
+                               :DDR4 ;
+                      :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> ;
+                      :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
+                      :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4x16GB> ;
+                      :manufacturer :G.SKILL_Aegis .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#G.SKILL_Aegis
+:G.SKILL_Aegis rdf:type owl:NamedIndividual ,
+                        :RAMManufacturer .
+
+
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> rdf:type owl:NamedIndividual ,
                                                                                                                   :CacheCapacity .
@@ -2248,6 +2262,11 @@
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_MB> rdf:type owl:NamedIndividual ,
                                                                                                                   :CacheCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4x16GB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4x16GB> rdf:type owl:NamedIndividual ,
+                                                                                                                    :RAMLayout .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4.1_GHz
