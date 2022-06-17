@@ -1925,6 +1925,15 @@
                          :discreteMemoryType :GDDR6 .
 
 
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#DDR4_first_instance
+:DDR4_first_instance rdf:type owl:NamedIndividual ,
+                              :DDR4 ;
+                     :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> ;
+                     :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
+                     :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x32GB> ;
+                     :manufacturer :Kingston .
+
+
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB> rdf:type owl:NamedIndividual ,
                                                                                                                   :CacheCapacity .
@@ -2088,6 +2097,11 @@
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x16GB
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x16GB> rdf:type owl:NamedIndividual ,
+                                                                                                                    :RAMLayout .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x32GB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x32GB> rdf:type owl:NamedIndividual ,
                                                                                                                     :RAMLayout .
 
 
@@ -2334,6 +2348,11 @@
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#60_IPS
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#60_IPS> rdf:type owl:NamedIndividual ,
                                                                                                                     :TracingSpeed .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> rdf:type owl:NamedIndividual ,
+                                                                                                                       :RAMCapacity .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_KB
