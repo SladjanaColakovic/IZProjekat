@@ -11,7 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    ComponentSuggestionComponent
+    ComponentSuggestionComponent,
   ],
   imports: [
     BrowserModule,

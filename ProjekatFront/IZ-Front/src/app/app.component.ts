@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'IZ-Front';
+  isHomePage = true;
+
+  constructor(public router: Router) { }
+
+  homePage(){
+    this.router.navigate(['/']);
+    this.isHomePage = true;
+  }
+
+  componentSuggestion(){
+    this.router.navigate(['/componentSuggestion']);
+    this.isHomePage = false;
+  }
 }
