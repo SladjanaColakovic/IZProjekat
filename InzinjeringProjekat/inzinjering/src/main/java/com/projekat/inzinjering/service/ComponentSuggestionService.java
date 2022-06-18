@@ -25,16 +25,16 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.springframework.asm.TypeReference;
 import org.springframework.stereotype.Service;
 
-import com.projekat.inzinjering.dto.BetterRAMDTO;
 import com.projekat.inzinjering.dto.ProcessorDTO;
+import com.projekat.inzinjering.dto.RAMDTO;
 import com.projekat.inzinjering.dto.RAMSuggestionDTO;
 
 @Service
 public class ComponentSuggestionService {
 	
 	Model model = ModelFactory.createDefaultModel();
-	public List<BetterRAMDTO> getCompatibleRams(RAMSuggestionDTO ramSuggestion) {
-			List<BetterRAMDTO> result = new ArrayList<>();
+	public List<RAMDTO> getCompatibleRams(RAMSuggestionDTO ramSuggestion) {
+			List<RAMDTO> result = new ArrayList<>();
 		try {
 			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
 	        RDFDataMgr.read(model,is,Lang.TURTLE);   
@@ -765,18 +765,19 @@ public class ComponentSuggestionService {
         return rams;	
 	}
 	
-	private List<BetterRAMDTO> suggestCompatibleRams(List<String> rams) {
-		List<BetterRAMDTO> compatibleRams = new ArrayList<>();
+	private List<RAMDTO> suggestCompatibleRams(List<String> rams) {
+		List<RAMDTO> compatibleRams = new ArrayList<>();
 		
 		for(String r: rams) {
-			BetterRAMDTO ram = new BetterRAMDTO();
-			int speed = ramSpeed(r);
-			int capacity = ramCapacity(r);
+			RAMDTO ram = new RAMDTO();
+			String speed = ramSpeed(r);
+			String capacity = ramCapacity(r);
+			String[] array = capacity.split("_");
 			String layout = ramLayout(r);
 			String manufacturer = ramManufacturer(r);
 			String type = ramType(r);
 			ram.setType(type);
-			ram.setCapacity(capacity);
+			ram.setCapacity(array[0] + array[1]);
 			ram.setSpeed(speed);
 			ram.setManufacturer(manufacturer);
 			ram.setLayout(layout);
@@ -790,7 +791,7 @@ public class ComponentSuggestionService {
 		List<String> compatibleRams = new ArrayList<>();
 		
 		for(String r: rams) {			
-			int capacity = ramCapacity(r);
+			int capacity = Integer.parseInt(ramCapacity(r).split("_")[0]);
 			String layout = ramLayout(r);
 			int usedLayout = Integer.parseInt(layout.split("x")[0]);
 			
@@ -911,7 +912,7 @@ public class ComponentSuggestionService {
 	}
 	
 	
-	private int ramSpeed(String ram) {		
+	private String ramSpeed(String ram) {		
 		String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -936,15 +937,15 @@ public class ComponentSuggestionService {
                 QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("ramSpeed");
                 String[] array = r.toString().split("#");
-                String speed = array[1].split("_")[0];
-                return Integer.parseInt(speed);   
+                String speed = array[1];
+                return speed.replace("_", "");   
             }
         } catch(Exception e) {
         	e.printStackTrace();
         }finally {
             qexec.close();
         }       
-        return 0;		
+        return "";		
 	}
 	
 	
@@ -984,7 +985,7 @@ public class ComponentSuggestionService {
         return "";		
 	}
 	
-	private int ramCapacity(String ram) {		
+	private String ramCapacity(String ram) {		
 		String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -1009,15 +1010,15 @@ public class ComponentSuggestionService {
                 QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("ramCapacity");
                 String[] array = r.toString().split("#");
-                String capacity = array[1].split("_")[0];
-                return Integer.parseInt(capacity);   
+                String capacity = array[1];
+                return capacity;   
             }
         } catch(Exception e) {
         	e.printStackTrace();
         }finally {
             qexec.close();
         }       
-        return 0;		
+        return "";		
 	}
 
 	

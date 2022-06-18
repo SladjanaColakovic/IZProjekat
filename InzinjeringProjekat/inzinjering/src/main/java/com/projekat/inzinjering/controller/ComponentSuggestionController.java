@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projekat.inzinjering.dto.BetterRAMDTO;
+import com.projekat.inzinjering.dto.RAMDTO;
 import com.projekat.inzinjering.dto.ProcessorDTO;
 import com.projekat.inzinjering.dto.RAMSuggestionDTO;
 import com.projekat.inzinjering.service.ComponentSuggestionService;
@@ -42,7 +42,7 @@ public class ComponentSuggestionController
 		return "Hello User";  
 	}  */
 	public ResponseEntity<?> compatibleRams(@RequestBody RAMSuggestionDTO dto) {
-		List<BetterRAMDTO> result = suggestionService.getCompatibleRams(dto);
+		List<RAMDTO> result = suggestionService.getCompatibleRams(dto);
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 	@GetMapping(value = "/motherboards")
