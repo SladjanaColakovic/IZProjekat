@@ -19,50 +19,240 @@ import org.apache.jena.riot.RDFDataMgr;
 import org.springframework.asm.TypeReference;
 import org.springframework.stereotype.Service;
 
-import com.projekat.inzinjering.dto.RAMDTO;
-import com.projekat.inzinjering.dto.RAMSuggestionDTO;
+import com.projekat.inzinjering.dto.ProcessorDTO;
 
 @Service
-public class RamSuggestionService {
+public class ProcessorSuggestionService {
 	
 	Model model = ModelFactory.createDefaultModel();
 	
-	public List<RAMDTO> getCompatibleRams(RAMSuggestionDTO ramSuggestion) {
-		List<RAMDTO> result = new ArrayList<>();
+	public List<ProcessorDTO> getCompatibleProcessors(String motherboard){
+		
+		List<ProcessorDTO> processors = new ArrayList<>();
 		try {
 			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
-	        RDFDataMgr.read(model,is,Lang.TURTLE);   
-	        int slotNum = ramSlots(ramSuggestion.getMotherboard());
-	        if(slotNum != 0) {
-	        	String pc = findPC(ramSuggestion.getMotherboard());
-	        	String processor = findProcessor(pc);
-	        	int maxRam = maxRamCapacity(processor);
-	        	String ram = ram(ramSuggestion.getMotherboard());
-	        	System.out.println(ram);
-	        	String layout = ramLayout(ram);
-	        	String type = ramType(ram);
-	        	List<String> rams = new ArrayList<>();
-	        	List<String> compatibleRams = new ArrayList<>();
-	        	rams = rams(type);
-	        	compatibleRams = compatibleRams(rams, maxRam, slotNum);
-	        	result = suggestCompatibleRams(compatibleRams);
-	        	System.out.println("RAM slots: " + slotNum);
-	        	System.out.println("Max RAM capacity: " + maxRam);
-	        	System.out.println("Layout: "+ layout);
-	        	System.out.println("RAM type: "+ type);
-	        	System.out.println("RAMS "+ rams);
-	        	System.out.println("Compatible RAMS "+ compatibleRams);
-	        	return result;
-	        		
+	        RDFDataMgr.read(model,is,Lang.TURTLE); 
+	        String socket = findProcessorSocket(motherboard);
+	        String chipset = findMotherboardChipset(motherboard);
+	        List<String> socketCompatibleProcessors = new ArrayList<>();
+	        List<String> chipsetCompatibleProcessors = new ArrayList<>();
+	        List<String> compatibleProcessors = new ArrayList<>();
+	        socketCompatibleProcessors = socketCompatibleProcessors(socket);
+	        chipsetCompatibleProcessors = chipsetCompatibleProcessors(chipset);
+	        compatibleProcessors = chipsetAndSocketCompatibility(chipsetCompatibleProcessors, socketCompatibleProcessors);
+	        System.out.println(chipsetCompatibleProcessors);
+	        System.out.println(socketCompatibleProcessors);
+	        System.out.println(compatibleProcessors);
+	        for(String p: compatibleProcessors) {
+	        	ProcessorDTO processor = new ProcessorDTO();
+	        	String frequency = processorFrequency(p);
+	        	String boostFrequency = processorBoostFrequency(p);
+	        	String tdp =  processorTDP(p);
+	        	int cores = processorCores(p);
+	        	int threads = processorThreads(p);
+	        	String l1Cache = l1Cache(p);
+	        	String l2Cache = l2Cache(p);
+	        	String l3Cache = l3Cache(p);
+	        	String l1Capacity = cacheCapacity(l1Cache);
+	        	String l2Capacity = cacheCapacity(l2Cache);
+	        	String l3Capacity = cacheCapacity(l3Cache);
+	        	processor.setFrequency(frequency);
+	        	processor.setBoostFrequency(boostFrequency);
+	        	processor.setName(p.replace("_", " "));
+	        	processor.setTDP(tdp);
+	        	processor.setCores(cores);
+	        	processor.setThreads(threads);
+	        	processor.setL1Cache(l1Capacity.replace("_", ""));
+	        	processor.setL2Cache(l2Capacity.replace("_", ""));
+	        	processor.setL3Cache(l3Capacity.replace("_", ""));
+	        	System.out.println(frequency);
+	        	System.out.println(boostFrequency);
+	        	System.out.println(tdp);
+	        	System.out.println(cores);
+	        	System.out.println(threads);
+	        	System.out.println(l1Cache);
+	        	System.out.println(l2Cache);
+	        	System.out.println(l3Cache);
+	        	System.out.println(l1Capacity);
+	        	System.out.println(l2Capacity);
+	        	System.out.println(l3Capacity);
+	        	processors.add(processor);
 	        }
-			is.close();						
+	        return processors;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return result;
+		
+		return processors;
+		
 	}
 	
-	private int ramSlots(String motherboard) {
+	private String findProcessorSocket(String motherboard) {
+		String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT  ?socket "
+                +"WHERE "
+                + "{ "
+                +"base:"
+                + motherboard
+                + " base:hasProcessorSocket "
+                +"?socket"
+                +" .} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("socket");
+                String socket = r.getLocalName();
+                System.out.println(socket);
+                return socket;
+            }
+            
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }
+        return "";
+	}
+	
+	private String findMotherboardChipset(String motherboard) {
+		String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT  ?chipset "
+                +"WHERE "
+                + "{ "
+                +"base:"
+                + motherboard
+                + " base:hasChipset "
+                +"?chipset"
+                +" .} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("chipset");
+                String chipset = r.getLocalName();
+                System.out.println(chipset);
+                return chipset;
+            }
+            
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }
+        return "";
+	}
+	
+	private List<String> socketCompatibleProcessors(String socket) {
+		List<String> processors = new ArrayList<>();
+		String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?processor "
+                +"WHERE "
+                + "{"
+                +"base:"
+                + socket
+                + " base:socketCompatibility "
+                +"?processor"
+                +" .} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("processor");
+                String processor = r.getLocalName();
+                processors.add(processor);    
+                
+            }
+            return processors;
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return processors;	
+	}
+	
+	
+	private List<String> chipsetCompatibleProcessors(String chipset) {
+		List<String> processors = new ArrayList<>();
+		String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?processor "
+                +"WHERE "
+                + "{"
+                +"base:"
+                + chipset
+                + " base:chipsetCompatibility "
+                +"?processor"
+                +" .} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("processor");
+                String processor = r.getLocalName();
+                processors.add(processor);    
+                
+            }
+            return processors;
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return processors;	
+	}
+	
+	private List<String> chipsetAndSocketCompatibility(List<String> chipsetCompatible, List<String> socketCompatible) {
+		List<String> processors = new ArrayList<>();
+		
+		for(String cC: chipsetCompatible) {
+			for(String sC : socketCompatible) {
+				if(sC.equals(cC)) {
+					processors.add(sC);
+				}
+			}
+		}
+        return processors;	
+	}
+	
+	private String processorFrequency(String processor) {
         String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -70,13 +260,13 @@ public class RamSuggestionService {
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
                 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
                 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?slotNum "
+                + "SELECT ?frequency "
                 +"WHERE "
                 + "{"
                 +"base:"
-                + motherboard
-                + " base:numberOfRamSlots "
-                +"?slotNum ."
+                + processor
+                + " base:hasFrequency "
+                +"?frequency ."
                 +"} ";
         Query query = QueryFactory.create(queryString);
         System.out.println(query);
@@ -85,7 +275,117 @@ public class RamSuggestionService {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
-                Literal l = solution.getLiteral("slotNum");
+                Resource r = solution.getResource("frequency");
+                String[] array = r.toString().split("#");
+                String frequency = array[1];
+                return frequency.replace("_", "");
+                
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return "";		
+	}
+	
+	private String processorTDP(String processor) {
+        String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?tdp "
+                +"WHERE "
+                + "{"
+                +"base:"
+                + processor
+                + " base:hasTDP "
+                +"?tdp ."
+                +"} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("tdp");
+                String tdp = r.toString().split("#")[1];
+                return tdp;
+                
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return "";		
+	}
+	
+	private String processorBoostFrequency(String processor) {
+        String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?boostFrequency "
+                +"WHERE "
+                + "{"
+                +"base:"
+                + processor
+                + " base:hasBoostFrequency "
+                +"?boostFrequency ."
+                +"} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("boostFrequency");
+                String[] array = r.toString().split("#");
+                String boostFrequency = array[1];
+                return boostFrequency.replace("_", "");
+                
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return "";		
+	}
+	
+	private int processorCores(String processor) {
+        String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?cores "
+                +"WHERE "
+                + "{"
+                +"base:"
+                + processor
+                + " base:numberOfCores "
+                +"?cores ."
+                +"} ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Literal l = solution.getLiteral("cores");
                 return l.getInt();
                 
             }
@@ -97,22 +397,21 @@ public class RamSuggestionService {
         return 0;		
 	}
 	
-	private int maxRamCapacity(String processor) {
-	
-		String queryString = 
+	private int processorThreads(String processor) {
+        String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
         		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
                 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
                 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?maxRam "
+                + "SELECT ?threads "
                 +"WHERE "
                 + "{"
                 +"base:"
                 + processor
-                + " base:providesMaxRAMCapacity "
-                +"?maxRam ."
+                + " base:numberOfThreads "
+                +"?threads ."
                 +"} ";
         Query query = QueryFactory.create(queryString);
         System.out.println(query);
@@ -121,184 +420,33 @@ public class RamSuggestionService {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("maxRam");
-                String resource = r.toString();
-                String[] array = resource.split("#");
-                String[] array1 = array[1].split("_");
-                return Integer.parseInt(array1[0]);
+                Literal l = solution.getLiteral("threads");
+                return l.getInt();
                 
             }
         } catch(Exception e) {
         	e.printStackTrace();
         }finally {
             qexec.close();
-        }
-        
-        return 0;
-		
-	}
-	
-	private String findPC(String motherboard) {
-		String queryString = 
-        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
-                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?pc "
-                +"WHERE "
-                + "{"
-                +"?pc"
-                + " base:hasMotherboard "
-                +"base:"
-                + motherboard
-                +" . } ";
-        Query query = QueryFactory.create(queryString);
-        System.out.println(query);
-        QueryExecution qexec = QueryExecutionFactory.create(query, model);
-        try {
-            ResultSet results = qexec.execSelect();
-            while (results.hasNext()) {
-                QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("pc");
-                return r.getLocalName();  
-            }
-        } catch(Exception e) {
-        	e.printStackTrace();
-        }finally {
-            qexec.close();
         }       
-        return "";				
+        return 0;		
 	}
 	
-	private String findProcessor(String pc) {
-		String queryString = 
+	private String l1Cache(String processor) {
+        String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
         		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
                 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
                 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?processor "
-                +"WHERE "
-                + "{"
-                + "base:"
-                + pc
-                + " base:hasProcessor "
-                + "?processor"
-                +" . } ";
-        Query query = QueryFactory.create(queryString);
-        System.out.println(query);
-        QueryExecution qexec = QueryExecutionFactory.create(query, model);
-        try {
-            ResultSet results = qexec.execSelect();
-            while (results.hasNext()) {
-                QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("processor");
-                return r.getLocalName();  
-            }
-        } catch(Exception e) {
-        	e.printStackTrace();
-        }finally {
-            qexec.close();
-        }       
-        return "";
-		
-	}
-	
-	private List<String> rams(String ramType) {
-		List<String> rams = new ArrayList<>();
-		String queryString = 
-        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
-                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ram "
-                +"WHERE "
-                + "{"
-                +"?ram"
-                + " rdf:type "
-                +"base:"
-                + ramType
-                +" .} ";
-        Query query = QueryFactory.create(queryString);
-        System.out.println(query);
-        QueryExecution qexec = QueryExecutionFactory.create(query, model);
-        try {
-            ResultSet results = qexec.execSelect();
-            while (results.hasNext()) {
-                QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ram");
-                String ram = r.getLocalName();
-                rams.add(ram);    
-                
-            }
-            return rams;
-        } catch(Exception e) {
-        	e.printStackTrace();
-        }finally {
-            qexec.close();
-        }       
-        return rams;	
-	}
-	
-	private List<RAMDTO> suggestCompatibleRams(List<String> rams) {
-		List<RAMDTO> compatibleRams = new ArrayList<>();
-		
-		for(String r: rams) {
-			RAMDTO ram = new RAMDTO();
-			String speed = ramSpeed(r);
-			String capacity = ramCapacity(r);
-			String[] array = capacity.split("_");
-			String layout = ramLayout(r);
-			String manufacturer = ramManufacturer(r);
-			String type = ramType(r);
-			ram.setType(type);
-			ram.setCapacity(array[0] + array[1]);
-			ram.setSpeed(speed);
-			ram.setManufacturer(manufacturer);
-			ram.setLayout(layout);
-			compatibleRams.add(ram);			
-		}
-		
-        return compatibleRams;	
-	}
-	
-	private List<String> compatibleRams(List<String> rams, int currentRamMaxCapacity, int currentRamSlots) {
-		List<String> compatibleRams = new ArrayList<>();
-		
-		for(String r: rams) {			
-			int capacity = Integer.parseInt(ramCapacity(r).split("_")[0]);
-			String layout = ramLayout(r);
-			int usedLayout = Integer.parseInt(layout.split("x")[0]);
-			
-			if(capacity <= currentRamMaxCapacity) {
-				if(usedLayout <= currentRamSlots) {
-					compatibleRams.add(r);
-				}
-			}										
-		}		
-        return compatibleRams;	
-	}
-	
-	private String ramType(String ram) {		
-		String queryString = 
-        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
-                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ramType "
+                + "SELECT ?l1Cache "
                 +"WHERE "
                 + "{"
                 +"base:"
-                + ram
-                + " rdf:type "
-                +"?ramType ."
+                + processor
+                + " base:hasL1Cache "
+                +"?l1Cache ."
                 +"} ";
         Query query = QueryFactory.create(queryString);
         System.out.println(query);
@@ -307,47 +455,9 @@ public class RamSuggestionService {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ramType");
-                String[] array = r.toString().split("#");
-                if(array[1].startsWith("D")) {
-                	return array[1];
-                }
-                return "";  
-            }
-        } catch(Exception e) {
-        	e.printStackTrace();
-        }finally {
-            qexec.close();
-        }       
-        return "";		
-	}
-	
-	
-	private String ramManufacturer(String ram) {		
-		String queryString = 
-        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
-                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ramManufacturer "
-                +"WHERE "
-                + "{"
-                +"base:"
-                + ram
-                + " base:manufacturer "
-                +"?ramManufacturer ."
-                +"} ";
-        Query query = QueryFactory.create(queryString);
-        System.out.println(query);
-        QueryExecution qexec = QueryExecutionFactory.create(query, model);
-        try {
-            ResultSet results = qexec.execSelect();
-            while (results.hasNext()) {
-                QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ramManufacturer");
+                Resource r = solution.getResource("l1Cache");
                 return r.getLocalName();
+                
             }
         } catch(Exception e) {
         	e.printStackTrace();
@@ -357,21 +467,21 @@ public class RamSuggestionService {
         return "";		
 	}
 	
-	private String ram(String motherboard) {		
-		String queryString = 
+	private String l2Cache(String processor) {
+        String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
         		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
                 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
                 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ram "
+                + "SELECT ?l2Cache "
                 +"WHERE "
                 + "{"
                 +"base:"
-                + motherboard
-                + " base:hasRAM "
-                +"?ram ."
+                + processor
+                + " base:hasL2Cache "
+                +"?l2Cache ."
                 +"} ";
         Query query = QueryFactory.create(queryString);
         System.out.println(query);
@@ -380,8 +490,9 @@ public class RamSuggestionService {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ram");
-                return r.getLocalName();   
+                Resource r = solution.getResource("l2Cache");
+                return r.getLocalName();
+                
             }
         } catch(Exception e) {
         	e.printStackTrace();
@@ -391,22 +502,21 @@ public class RamSuggestionService {
         return "";		
 	}
 	
-	
-	private String ramSpeed(String ram) {		
-		String queryString = 
+	private String l3Cache(String processor) {
+        String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
         		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
                 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
                 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ramSpeed "
+                + "SELECT ?l3Cache "
                 +"WHERE "
                 + "{"
                 +"base:"
-                + ram
-                + " base:hasSpeed "
-                +"?ramSpeed ."
+                + processor
+                + " base:hasL3Cache "
+                +"?l3Cache ."
                 +"} ";
         Query query = QueryFactory.create(queryString);
         System.out.println(query);
@@ -415,10 +525,9 @@ public class RamSuggestionService {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ramSpeed");
-                String[] array = r.toString().split("#");
-                String speed = array[1];
-                return speed.replace("_", "");   
+                Resource r = solution.getResource("l3Cache");
+                return r.getLocalName();
+                
             }
         } catch(Exception e) {
         	e.printStackTrace();
@@ -428,22 +537,21 @@ public class RamSuggestionService {
         return "";		
 	}
 	
-	
-	private String ramLayout(String ram) {		
-		String queryString = 
+	private String cacheCapacity(String cache) {
+        String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
         		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
                 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
                 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ramLayout "
+                + "SELECT ?capacity "
                 +"WHERE "
                 + "{"
                 +"base:"
-                + ram
-                + " base:layout "
-                +"?ramLayout ."
+                + cache
+                + " base:hasCacheCapacity "
+                +"?capacity ."
                 +"} ";
         Query query = QueryFactory.create(queryString);
         System.out.println(query);
@@ -452,46 +560,9 @@ public class RamSuggestionService {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ramLayout");
-                String[] array = r.toString().split("#");
-                String layout = array[1].split("_")[0];
-                return layout.replace("GB", "");   
-            }
-        } catch(Exception e) {
-        	e.printStackTrace();
-        }finally {
-            qexec.close();
-        }       
-        return "";		
-	}
-	
-	private String ramCapacity(String ram) {		
-		String queryString = 
-        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
-                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
-                + "SELECT ?ramCapacity "
-                +"WHERE "
-                + "{"
-                +"base:"
-                + ram
-                + " base:hasCapacity "
-                +"?ramCapacity ."
-                +"} ";
-        Query query = QueryFactory.create(queryString);
-        System.out.println(query);
-        QueryExecution qexec = QueryExecutionFactory.create(query, model);
-        try {
-            ResultSet results = qexec.execSelect();
-            while (results.hasNext()) {
-                QuerySolution solution = results.nextSolution();
-                Resource r = solution.getResource("ramCapacity");
-                String[] array = r.toString().split("#");
-                String capacity = array[1];
-                return capacity;   
+                Resource r = solution.getResource("capacity");
+                return r.toString().split("#")[1];
+                
             }
         } catch(Exception e) {
         	e.printStackTrace();

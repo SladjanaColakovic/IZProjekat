@@ -17,6 +17,8 @@ import com.projekat.inzinjering.dto.RAMDTO;
 import com.projekat.inzinjering.dto.ProcessorDTO;
 import com.projekat.inzinjering.dto.RAMSuggestionDTO;
 import com.projekat.inzinjering.service.ComponentSuggestionService;
+import com.projekat.inzinjering.service.ProcessorSuggestionService;
+import com.projekat.inzinjering.service.RamSuggestionService;
 
 @RestController
 @RequestMapping("api/suggestion")
@@ -26,6 +28,12 @@ public class ComponentSuggestionController
 	
 	@Autowired
     private ComponentSuggestionService suggestionService;
+	
+	@Autowired
+    private RamSuggestionService ramService;
+	
+	@Autowired
+    private ProcessorSuggestionService processorService;
 	
 	@PostMapping(value = "/ramSuggestion")
 	/*public String hello() {
@@ -42,7 +50,7 @@ public class ComponentSuggestionController
 		return "Hello User";  
 	}  */
 	public ResponseEntity<?> compatibleRams(@RequestBody RAMSuggestionDTO dto) {
-		List<RAMDTO> result = suggestionService.getCompatibleRams(dto);
+		List<RAMDTO> result = ramService.getCompatibleRams(dto);
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 	@GetMapping(value = "/motherboards")
@@ -55,7 +63,7 @@ public class ComponentSuggestionController
 	
 	@PostMapping(value = "/processorSuggestion")
 	public ResponseEntity<?> compatibleProcessors(@RequestBody RAMSuggestionDTO dto) {
-		List<ProcessorDTO> result = suggestionService.getCompatibleProcessors(dto.getMotherboard());
+		List<ProcessorDTO> result = processorService.getCompatibleProcessors(dto.getMotherboard());
 		return new ResponseEntity<>(result, HttpStatus.OK);  
 	}  
 	
