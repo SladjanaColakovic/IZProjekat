@@ -347,7 +347,7 @@ public class RamSuggestionService {
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("ramManufacturer");
-                return r.getLocalName();
+                return r.getLocalName().replace("_", " ");
             }
         } catch(Exception e) {
         	e.printStackTrace();
