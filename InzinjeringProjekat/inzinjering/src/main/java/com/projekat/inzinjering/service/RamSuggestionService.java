@@ -20,14 +20,14 @@ import org.springframework.asm.TypeReference;
 import org.springframework.stereotype.Service;
 
 import com.projekat.inzinjering.dto.RAMDTO;
-import com.projekat.inzinjering.dto.RAMSuggestionDTO;
+import com.projekat.inzinjering.dto.RAMProcessorSuggestionDTO;
 
 @Service
 public class RamSuggestionService {
 	
 	Model model = ModelFactory.createDefaultModel();
 	
-	public List<RAMDTO> getCompatibleRams(RAMSuggestionDTO ramSuggestion) {
+	public List<RAMDTO> getCompatibleRams(RAMProcessorSuggestionDTO ramSuggestion) {
 		List<RAMDTO> result = new ArrayList<>();
 		try {
 			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
