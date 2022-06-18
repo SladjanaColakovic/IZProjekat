@@ -1209,6 +1209,7 @@
                 :DDR2 ;
        :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2_GB_RAM> ;
        :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#800_MHz> ;
+       :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x2GB> ;
        :manufacturer :Kingston .
 
 
@@ -1217,6 +1218,7 @@
                 :DDR3 ;
        :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_GB_RAM> ;
        :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1600_MHz> ;
+       :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x4GB> ;
        :manufacturer :Kingston .
 
 
@@ -1225,6 +1227,7 @@
                 :DDR5 ;
        :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_GB_RAM> ;
        :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4800_MHz> ;
+       :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x8GB> ;
        :manufacturer :ADATA .
 
 
@@ -1958,6 +1961,11 @@
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_TB
 <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_TB> rdf:type owl:NamedIndividual ,
                                                                                                                   :SSDCapacity .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x2GB
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x2GB> rdf:type owl:NamedIndividual ,
+                                                                                                                   :RAMLayout .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1x4GB

@@ -33,7 +33,7 @@ import com.projekat.inzinjering.dto.RAMSuggestionDTO;
 public class ComponentSuggestionService {
 	
 	Model model = ModelFactory.createDefaultModel();
-	public List<BetterRAMDTO> ramSuggestion(RAMSuggestionDTO ramSuggestion) {
+	public List<BetterRAMDTO> getCompatibleRams(RAMSuggestionDTO ramSuggestion) {
 			List<BetterRAMDTO> result = new ArrayList<>();
 		try {
 			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
@@ -45,23 +45,19 @@ public class ComponentSuggestionService {
 	        	int maxRam = maxRamCapacity(processor);
 	        	String ram = ram(ramSuggestion.getMotherboard());
 	        	System.out.println(ram);
-	        	int speed = ramSpeed(ram);
-	        	int capacity = ramCapacity(ram);
 	        	String layout = ramLayout(ram);
 	        	String type = ramType(ram);
 	        	List<String> rams = new ArrayList<>();
-	        	List<String> betterRams = new ArrayList<>();
-	        	rams = rams(type, ram);
-	        	betterRams = betterRams(rams, speed, capacity, maxRam, slotNum);
-	        	result = suggestBetterRams(betterRams);
+	        	List<String> compatibleRams = new ArrayList<>();
+	        	rams = rams(type);
+	        	compatibleRams = compatibleRams(rams, maxRam, slotNum);
+	        	result = suggestCompatibleRams(compatibleRams);
 	        	System.out.println("RAM slots: " + slotNum);
 	        	System.out.println("Max RAM capacity: " + maxRam);
-	        	System.out.println("RAM speed: " + speed);
-	        	System.out.println("RAM capacity: " + capacity);
 	        	System.out.println("Layout: "+ layout);
 	        	System.out.println("RAM type: "+ type);
 	        	System.out.println("RAMS "+ rams);
-	        	System.out.println("Better RAMS "+ betterRams);
+	        	System.out.println("Compatible RAMS "+ compatibleRams);
 	        	return result;
 	        		
 	        }
@@ -731,7 +727,7 @@ public class ComponentSuggestionService {
 		
 	}
 	
-	private List<String> rams(String ramType, String currentRam) {
+	private List<String> rams(String ramType) {
 		List<String> rams = new ArrayList<>();
 		String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
@@ -757,9 +753,8 @@ public class ComponentSuggestionService {
                 QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("ram");
                 String ram = r.getLocalName();
-                if(!ram.equals(currentRam)) {
-                	rams.add(ram);    
-                }
+                rams.add(ram);    
+                
             }
             return rams;
         } catch(Exception e) {
@@ -770,8 +765,8 @@ public class ComponentSuggestionService {
         return rams;	
 	}
 	
-	private List<BetterRAMDTO> suggestBetterRams(List<String> rams) {
-		List<BetterRAMDTO> betterRams = new ArrayList<>();
+	private List<BetterRAMDTO> suggestCompatibleRams(List<String> rams) {
+		List<BetterRAMDTO> compatibleRams = new ArrayList<>();
 		
 		for(String r: rams) {
 			BetterRAMDTO ram = new BetterRAMDTO();
@@ -785,41 +780,27 @@ public class ComponentSuggestionService {
 			ram.setSpeed(speed);
 			ram.setManufacturer(manufacturer);
 			ram.setLayout(layout);
-			betterRams.add(ram);			
+			compatibleRams.add(ram);			
 		}
 		
-        return betterRams;	
+        return compatibleRams;	
 	}
 	
-	private List<String> betterRams(List<String> rams, int currentRamSpeed, int currentRamCapacity, int currentRamMaxCapacity, int currentRamSlots) {
-		List<String> betterRams = new ArrayList<>();
+	private List<String> compatibleRams(List<String> rams, int currentRamMaxCapacity, int currentRamSlots) {
+		List<String> compatibleRams = new ArrayList<>();
 		
-		for(String r: rams) {
-			
-			int speed = ramSpeed(r);
+		for(String r: rams) {			
 			int capacity = ramCapacity(r);
 			String layout = ramLayout(r);
 			int usedLayout = Integer.parseInt(layout.split("x")[0]);
-			if(speed > currentRamSpeed) {
-				if(capacity >= currentRamCapacity) {
-					if(capacity <= currentRamMaxCapacity) {
-						if(usedLayout <= currentRamSlots) {
-							betterRams.add(r);
-						}
-					}					
+			
+			if(capacity <= currentRamMaxCapacity) {
+				if(usedLayout <= currentRamSlots) {
+					compatibleRams.add(r);
 				}
-			}else if(speed == currentRamSpeed){
-				if(capacity > currentRamCapacity) {
-					if(capacity <= currentRamMaxCapacity) {
-						if(usedLayout <= currentRamSlots) {
-							betterRams.add(r);
-						}
-					};
-				}
-			}
-		}
-		
-        return betterRams;	
+			}										
+		}		
+        return compatibleRams;	
 	}
 	
 	private String ramType(String ram) {		

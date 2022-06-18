@@ -41,8 +41,8 @@ public class ComponentSuggestionController
     	}
 		return "Hello User";  
 	}  */
-	public ResponseEntity<?> ramSuggestion(@RequestBody RAMSuggestionDTO dto) {
-		List<BetterRAMDTO> result = suggestionService.ramSuggestion(dto);
+	public ResponseEntity<?> compatibleRams(@RequestBody RAMSuggestionDTO dto) {
+		List<BetterRAMDTO> result = suggestionService.getCompatibleRams(dto);
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 	@GetMapping(value = "/motherboards")
