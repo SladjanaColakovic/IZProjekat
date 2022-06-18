@@ -17,9 +17,10 @@ export class SuggestionComponentService {
     return this.http.post(this.baseURL + "/api/suggestion/ramSuggestion", data);      
   }
 
-  getProcessors() {
-    return this.http.get(this.baseURL + "/api/suggestion/processors");
+  processorSuggestion(data:any) {
+    return this.http.post(this.baseURL + "/api/suggestion/processorSuggestion", data);      
   }
+
 
 
 }

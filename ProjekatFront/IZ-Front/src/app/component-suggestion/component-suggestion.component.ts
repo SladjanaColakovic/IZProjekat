@@ -10,34 +10,46 @@ export class ComponentSuggestionComponent implements OnInit {
 
   constructor(public service: SuggestionComponentService) { }
 
-  motherboards: any[];
+  motherboardsForRam: any[];
+  motherboardsForProcessor: any[]
   processors: any[];
-  selectedMotherboard = "";
-  selectedProcessor = "";
+  selectedMotherboardForRam = "";
+  selectedMotherboardForProcessor = "";
   rams: any[];
 
 
   ngOnInit(): void {
     this.service.getMotherboards().subscribe((response: any) => {
-      this.motherboards = response;
-      console.log(this.motherboards)
-      this.service.getProcessors().subscribe((response: any) => {
-        this.processors = response;
-        console.log(this.processors)
+      this.motherboardsForRam = response;
+      console.log(this.motherboardsForRam)
+      this.service.getMotherboards().subscribe((response: any) => {
+        this.motherboardsForProcessor = response;
+        console.log(this.motherboardsForProcessor)
       })
     })
   }
 
   suggestRam(){
-    console.log(this.selectedMotherboard);
+    console.log(this.selectedMotherboardForRam);
     let data = {
-      motherboard: this.selectedMotherboard
+      motherboard: this.selectedMotherboardForRam
     }
     this.service.ramSuggestion(data).subscribe((response: any) => {
       this.rams = response;
       console.log(this.rams)
     })
     
+  }
+
+  suggestProcessor(){
+    console.log(this.selectedMotherboardForProcessor)
+    let data = {
+      motherboard: this.selectedMotherboardForProcessor
+    }
+    this.service.processorSuggestion(data).subscribe((response: any) => {
+      this.processors = response;
+      console.log(this.processors)
+    })
   }
 
 }

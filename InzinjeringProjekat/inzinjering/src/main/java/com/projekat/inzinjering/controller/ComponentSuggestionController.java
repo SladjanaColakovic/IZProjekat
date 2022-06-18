@@ -1,5 +1,6 @@
 package com.projekat.inzinjering.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projekat.inzinjering.dto.BetterRAMDTO;
+import com.projekat.inzinjering.dto.ProcessorDTO;
 import com.projekat.inzinjering.dto.RAMSuggestionDTO;
 import com.projekat.inzinjering.service.ComponentSuggestionService;
 
@@ -50,12 +52,12 @@ public class ComponentSuggestionController
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/processors")
-	public ResponseEntity<?> processors() {
-		List<String> result = suggestionService.getProcessors();
-		System.out.println(result);
-		return new ResponseEntity<>(result, HttpStatus.OK);
-	}
+	
+	@PostMapping(value = "/processorSuggestion")
+	public ResponseEntity<?> compatibleProcessors(@RequestBody RAMSuggestionDTO dto) {
+		List<ProcessorDTO> result = suggestionService.getCompatibleProcessors(dto.getMotherboard());
+		return new ResponseEntity<>(result, HttpStatus.OK);  
+	}  
 	
 	
 }  

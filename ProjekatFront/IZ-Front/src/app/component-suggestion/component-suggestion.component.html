@@ -1,14 +1,16 @@
 <div>
     <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;">RAM Suggestion</h4>
+    </div>
+    <div class="row">
         <div class="col-6">
             <div class="part1">
                 <label for="motherboard">Motherboard</label>
-                <select [(ngModel)]="selectedMotherboard" id="motherboard" name="motherboard" (change)="suggestRam()">
-                    <option *ngFor="let m of motherboards" [ngValue]="m">{{m}}</option>
+                <select [(ngModel)]="selectedMotherboardForRam" id="motherboard" name="motherboard"
+                    (change)="suggestRam()">
+                    <option *ngFor="let m of motherboardsForRam" [ngValue]="m">{{m}}</option>
                 </select>
-
                 <button (click)="suggestRam()">Suggest</button>
-
             </div>
         </div>
         <div *ngIf="rams != null" class="col-6">
@@ -21,16 +23,29 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;">Processor Suggestion</h4>
+    </div>
     <div class="row">
         <div class="col-6">
             <div class="part1">
-                <label for="processor">Processor</label>
-                <select [(ngModel)]="selectedProcessor" id="processor" name="processor">
-                    <option *ngFor="let p of processors" [ngValue]="p">{{p}}</option>
+                <label for="motherboard">Motherboard</label>
+                <select [(ngModel)]="selectedMotherboardForProcessor" id="motherboard" name="motherboard"
+                    (change)="suggestProcessor()">
+                    <option *ngFor="let m of motherboardsForProcessor" [ngValue]="m">{{m}}</option>
                 </select>
+                <button (click)="suggestProcessor()">Suggest</button>
+            </div>
+        </div>
+        <div *ngIf="processors != null" class="col-6">
+            <div class="part2">
+                <h2>Processor</h2>
+                <ul *ngFor="let p of processors">
+                    <li>{{p.name}} {{p.frequency}}-{{p.boostFrequency}} Cores: {{p.cores}} Threads: {{p.threads}} L1:
+                        {{p.l1Cache}} L2: {{p.l2Cache}} L3: {{p.l3Cache}}</li>
 
-                <button >Suggest</button>
-
+                </ul>
             </div>
         </div>
     </div>

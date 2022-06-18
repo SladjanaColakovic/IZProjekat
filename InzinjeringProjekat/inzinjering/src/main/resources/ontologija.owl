@@ -1159,6 +1159,15 @@
       :manufacturer :Kingston .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4_first_instance
+:DDR4_first_instance rdf:type owl:NamedIndividual ,
+                              :DDR4 ;
+                     :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> ;
+                     :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
+                     :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x32GB> ;
+                     :manufacturer :Kingston .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4_first_pc
 :DDR4_first_pc rdf:type owl:NamedIndividual ,
                         :DDR4 ;
@@ -1166,6 +1175,15 @@
                :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
                :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x16GB> ;
                :manufacturer :Kingston .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4_second_instance
+:DDR4_second_instance rdf:type owl:NamedIndividual ,
+                               :DDR4 ;
+                      :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> ;
+                      :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
+                      :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4x16GB> ;
+                      :manufacturer :G.SKILL_Aegis .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#DDR4_second_laptop
@@ -1288,6 +1306,11 @@
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#FullHD
 :FullHD rdf:type owl:NamedIndividual ,
                  :DisplayHDType .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#G.SKILL_Aegis
+:G.SKILL_Aegis rdf:type owl:NamedIndividual ,
+                        :RAMManufacturer .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#GDDR6
@@ -1648,7 +1671,9 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#LGA1200
 :LGA1200 rdf:type owl:NamedIndividual ,
-                  :LGA .
+                  :LGA ;
+         :socketCompatibility :Intel_Core_i3-10105 ,
+                              :Intel_Core_i5-10600K .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Lenovo_Laptop_81W100K2YA
@@ -1923,29 +1948,6 @@
                          :discreteGCSlot :PCIe_x16_first_laptop ;
                          :discreteMemory <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4GB_GC_memory> ;
                          :discreteMemoryType :GDDR6 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#DDR4_first_instance
-:DDR4_first_instance rdf:type owl:NamedIndividual ,
-                              :DDR4 ;
-                     :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> ;
-                     :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
-                     :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#2x32GB> ;
-                     :manufacturer :Kingston .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#DDR4_second_instance
-:DDR4_second_instance rdf:type owl:NamedIndividual ,
-                               :DDR4 ;
-                      :hasCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#64_GB_RAM> ;
-                      :hasSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3200_MHz> ;
-                      :layout <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4x16GB> ;
-                      :manufacturer :G.SKILL_Aegis .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#G.SKILL_Aegis
-:G.SKILL_Aegis rdf:type owl:NamedIndividual ,
-                        :RAMManufacturer .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
