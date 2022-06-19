@@ -1,0 +1,26 @@
+<div>
+  <ul class="navUl">
+    <li class="navLi"><a (click)="homePage()"><i>Home</i></a></li>
+    <li class="navLi"><a (click)="componentSuggestion()"><i>Component Suggestion</i></a></li>
+  </ul>
+  <div class="row" *ngIf="isHomePage">
+    <div class="col-6">
+      <img src="assets/sl1.jpg" alt="Paris" width="570" height="540">
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="part">
+          <ul class="messageUl">
+            <li class="messageLi"><i>Pomoc prodavnicama racunara i racunarske opreme...</i></li>
+            <li class="messageLi"><i>Pomoc servisima racunara...</i></li>
+            <li class="messageLi"><i>Olaksajte sebi posao, koristeci nasu aplikaciju...</i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -27px; margin-left: -140px;">
+        <img src="assets/sl3.jpg" alt="Paris" width="660" height="300">
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
