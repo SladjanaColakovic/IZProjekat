@@ -23,6 +23,7 @@ export class ComponentSuggestionComponent implements OnInit {
   selectedMotherboardForHDD = "";
   selectedMotherboardForGC = "";
   selectedComputerForHDD = "";
+  selectedComputerForGC = "";
 
 
   ngOnInit(): void {
@@ -74,6 +75,7 @@ export class ComponentSuggestionComponent implements OnInit {
     console.log(this.selectedMotherboardForGC)
     let data = {
       motherboard: this.selectedMotherboardForGC,
+      computer: this.selectedComputerForGC
     }
     this.service.gcSuggestion(data).subscribe((response: any) => {
       this.gcs = response;

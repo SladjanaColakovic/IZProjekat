@@ -84,7 +84,7 @@ public class ComponentSuggestionController
 	
 	@PostMapping(value = "/gcSuggestion")
 	public ResponseEntity<?> compatibleGCs(@RequestBody RAMProcessorSuggestionDTO dto) {
-		List<GraphicsCardDTO> result = gcService.getCompatibleGC(dto.getMotherboard());
+		List<GraphicsCardDTO> result = gcService.getCompatibleGC(dto.getMotherboard(), dto.getComputer());
 		return new ResponseEntity<>(result, HttpStatus.OK);  
 	} 
 }  

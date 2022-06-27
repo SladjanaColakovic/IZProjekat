@@ -86,8 +86,13 @@
         <div class="col-6">
             <div class="part1">
                 <label for="motherboard"><i>Motherboard</i></label>
-                <select [(ngModel)]="selectedMotherboardForGC" id="motherboard" name="motherboard" (change)="suggestGC()">
+                <select [(ngModel)]="selectedMotherboardForGC" id="motherboard" name="motherboard">
                     <option *ngFor="let m of motherboardsForGC" [ngValue]="m">{{m}}</option>
+                </select>
+                <label for="computer"><i>Computer</i></label>
+                <select [(ngModel)]="selectedComputerForGC" id="computer" name="computer">
+                    <option value="PC">PC</option>
+                    <option value="Laptop">Laptop</option>
                 </select>
                 <button (click)="suggestGC()"><i>Suggest</i></button>
             </div>

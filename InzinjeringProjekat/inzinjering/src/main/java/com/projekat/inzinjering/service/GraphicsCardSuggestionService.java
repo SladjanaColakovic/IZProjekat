@@ -26,23 +26,25 @@ public class GraphicsCardSuggestionService {
 
 Model model = ModelFactory.createDefaultModel();
 	
-	public List<GraphicsCardDTO> getCompatibleGC(String motherboard) {
+	public List<GraphicsCardDTO> getCompatibleGC(String motherboard, String computer) {
 		List<GraphicsCardDTO> compatibleGC = new ArrayList<>();
 		try {
 			InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
 	        RDFDataMgr.read(model,is,Lang.TURTLE);
 			List<String> gcs = findGCs();
 			System.out.println(gcs);
-			for(String gc : gcs) {
-				GraphicsCardDTO graphicsCard = new GraphicsCardDTO();
-				String slot = findGCSlot(gc);
-				System.out.println(slot);
-				String version = pcieVersion(slot);
-				String type = pcieType(slot);
-				boolean compatible = compatibleSlot(version, type, motherboard);
-				if(compatible) {
-					graphicsCard = graphicsCard(gc);
-					compatibleGC.add(graphicsCard);	
+			if(condition(motherboard, computer)) {
+				for(String gc : gcs) {
+					GraphicsCardDTO graphicsCard = new GraphicsCardDTO();
+					String slot = findGCSlot(gc);
+					System.out.println(slot);
+					String version = pcieVersion(slot);
+					String type = pcieType(slot);
+					boolean compatible = compatibleSlot(version, type, motherboard);
+					if(compatible) {
+						graphicsCard = graphicsCard(gc);
+						compatibleGC.add(graphicsCard);	
+					}
 				}
 			}
 			return compatibleGC;					
@@ -51,6 +53,56 @@ Model model = ModelFactory.createDefaultModel();
 		} 
 		return compatibleGC;
 	}
+	
+	private boolean condition(String motherboard, String computer) {
+		
+		if(computer.equals("Laptop") && !integratedGC(motherboard).equals("")) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private String integratedGC(String motherboard) {
+        String queryString = 
+        		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+        		+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+                + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+                + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+                + "SELECT ?gc "
+                +"WHERE "
+                + "{ "
+                +"base:"
+                + motherboard
+                + " base:hasGraphicsCard "
+                +"?gc ."
+                + " ?gc "
+                + "rdf:type "
+                + "base:IntegratedGC"
+                +" . } ";
+        Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+            	QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("gc");
+                String result = r.toString().split("#")[1];
+                
+                return result;
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }       
+        return "";		
+	}
+	
+	
 	
 	private GraphicsCardDTO graphicsCard(String gc) {
 		GraphicsCardDTO card = new GraphicsCardDTO();
