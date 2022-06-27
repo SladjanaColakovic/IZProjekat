@@ -11,21 +11,28 @@ export class ComponentSuggestionComponent implements OnInit {
   constructor(public service: SuggestionComponentService) { }
 
   motherboardsForRam: any[];
-  motherboardsForProcessor: any[]
+  motherboardsForProcessor: any[];
+  motherboardsForHDD: any[];
+  motherboardsForGC: any[];
   processors: any[];
   selectedMotherboardForRam = "";
   selectedMotherboardForProcessor = "";
   rams: any[];
+  hdds: any[];
+  gcs: any[];
+  selectedMotherboardForHDD = "";
+  selectedMotherboardForGC = "";
+  selectedComputerForHDD = "";
+  selectedComputerForGC = "";
 
 
   ngOnInit(): void {
     this.service.getMotherboards().subscribe((response: any) => {
       this.motherboardsForRam = response;
+      this.motherboardsForProcessor = response;
+      this.motherboardsForHDD = response;
+      this.motherboardsForGC = response;
       console.log(this.motherboardsForRam)
-      this.service.getMotherboards().subscribe((response: any) => {
-        this.motherboardsForProcessor = response;
-        console.log(this.motherboardsForProcessor)
-      })
     })
   }
 
@@ -49,6 +56,30 @@ export class ComponentSuggestionComponent implements OnInit {
     this.service.processorSuggestion(data).subscribe((response: any) => {
       this.processors = response;
       console.log(this.processors)
+    })
+  }
+
+  suggestHDD(){
+    console.log(this.selectedMotherboardForHDD)
+    let data = {
+      motherboard: this.selectedMotherboardForHDD,
+      computer: this.selectedComputerForHDD
+    }
+    this.service.hddSuggestion(data).subscribe((response: any) => {
+      this.hdds = response;
+      console.log(this.hdds)
+    })
+  }
+
+  suggestGC(){
+    console.log(this.selectedMotherboardForGC)
+    let data = {
+      motherboard: this.selectedMotherboardForGC,
+      computer: this.selectedComputerForGC
+    }
+    this.service.gcSuggestion(data).subscribe((response: any) => {
+      this.gcs = response;
+      console.log(this.gcs)
     })
   }
 

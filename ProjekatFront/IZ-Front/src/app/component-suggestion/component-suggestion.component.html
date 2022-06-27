@@ -49,4 +49,61 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Hard Disk Suggestion</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="motherboard"><i>Motherboard</i></label>
+                <select [(ngModel)]="selectedMotherboardForHDD" id="motherboard" name="motherboard">
+                    <option *ngFor="let m of motherboardsForHDD" [ngValue]="m">{{m}}</option>
+                </select>
+                <label for="computer"><i>Computer</i></label>
+                <select [(ngModel)]="selectedComputerForHDD" id="computer" name="computer">
+                    <option value="PC">PC</option>
+                    <option value="Laptop">Laptop</option>
+                </select>
+                <button (click)="suggestHDD()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="hdds != null" class="col-6">
+            <div class="part2">
+                <h2><i>HDD</i></h2>
+                <ul *ngFor="let hdd of hdds">
+                    <li *ngIf="hdd.nvme"><i> {{hdd.type}} NVMe {{hdd.format}} {{hdd.hdd_interface}} {{hdd.capacity}} {{hdd.speed}} </i></li>
+                    <li *ngIf="!hdd.nvme"><i> {{hdd.type}} {{hdd.format}} {{hdd.hdd_interface}} {{hdd.capacity}} {{hdd.speed}} </i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Graphics Card Suggestion</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="motherboard"><i>Motherboard</i></label>
+                <select [(ngModel)]="selectedMotherboardForGC" id="motherboard" name="motherboard">
+                    <option *ngFor="let m of motherboardsForGC" [ngValue]="m">{{m}}</option>
+                </select>
+                <label for="computer"><i>Computer</i></label>
+                <select [(ngModel)]="selectedComputerForGC" id="computer" name="computer">
+                    <option value="PC">PC</option>
+                    <option value="Laptop">Laptop</option>
+                </select>
+                <button (click)="suggestGC()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="gcs != null" class="col-6">
+            <div class="part2">
+                <h2><i>GC</i></h2>
+                <ul *ngFor="let gc of gcs"> 
+                    <li><i> {{gc.name}} {{gc.memory}} {{gc.memoryType}} </i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
