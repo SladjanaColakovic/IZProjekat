@@ -212,6 +212,13 @@
             rdfs:range :L3 .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasM.2Slot
+:hasM.2Slot rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :Motherboard ;
+            rdfs:range :M.2Slot .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasMaxCapacity
 :hasMaxCapacity rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
@@ -404,6 +411,12 @@
                      rdfs:range :Processor .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#supports
+:supports rdf:type owl:ObjectProperty ;
+          rdfs:domain :M.2Slot ;
+          rdfs:range :SSDInterface .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#typeOfKeyboardBacklight
 :typeOfKeyboardBacklight rdf:type owl:ObjectProperty ;
                          rdfs:domain :Keyboard ;
@@ -435,19 +448,6 @@
          rdfs:range :PCIeVersion .
 
 
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasM.2Slot
-:hasM.2Slot rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf owl:topObjectProperty ;
-            rdfs:domain :Motherboard ;
-            rdfs:range :M.2Slot .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#supports
-:supports rdf:type owl:ObjectProperty ;
-          rdfs:domain :M.2Slot ;
-          rdfs:range :SSDInterface .
-
-
 #################################################################
 #    Data properties
 #################################################################
@@ -456,6 +456,20 @@
 :IsTouchable rdf:type owl:DatatypeProperty ;
              rdfs:domain :Laptop ;
              rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIeLanes
+:PCIeLanes rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :PCIe_ssd ;
+           rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIeVersion
+:PCIeVersion rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :PCIe_ssd ;
+             rdfs:range xsd:int .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasBluetooth
@@ -480,6 +494,12 @@
 :hasMouseBacklight rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Mouse ;
                    rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasNVMeProtocol
+:hasNVMeProtocol rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :SSD ;
+                 rdfs:range xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#hasWaterCoolingSystem
@@ -512,6 +532,12 @@
                            rdfs:range xsd:int .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfM.2Slots
+:numberOfM.2Slots rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Motherboard ;
+                  rdfs:range xsd:int .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#numberOfPCIe
 :numberOfPCIe rdf:type owl:DatatypeProperty ;
               rdfs:domain :PCIe ;
@@ -534,32 +560,6 @@
 :numberOfThreads rdf:type owl:DatatypeProperty ;
                  rdfs:domain :Processor ;
                  rdfs:range xsd:int .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIeLanes
-:PCIeLanes rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
-           rdfs:domain :PCIe ;
-           rdfs:range xsd:int .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIeVersion
-:PCIeVersion rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf owl:topDataProperty ;
-             rdfs:domain :PCIe ;
-             rdfs:range xsd:int .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#hasNVMeProtocol
-:hasNVMeProtocol rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :SSD ;
-                 rdfs:range xsd:boolean .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#numberOfM.2Slots
-:numberOfM.2Slots rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Motherboard ;
-                  rdfs:range xsd:int .
 
 
 #################################################################
@@ -750,6 +750,10 @@
      rdfs:subClassOf :SSDFormFactor .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2Slot
+:M.2Slot rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#MaxMemoryBandwidth
 :MaxMemoryBandwidth rdf:type owl:Class .
 
@@ -916,6 +920,11 @@
           rdfs:subClassOf :SATA .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_hdd
+:SATA_hdd rdf:type owl:Class ;
+          rdfs:subClassOf :SSDInterface .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SDR
 :SDR rdf:type owl:Class ;
      rdfs:subClassOf :SDRAM .
@@ -993,17 +1002,8 @@
        rdfs:subClassOf :SSDFormFactor .
 
 
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#M.2Slot
-:M.2Slot rdf:type owl:Class .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe
-:PCIe rdf:type owl:Class ;
-      rdfs:subClassOf :SSDInterface .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#SATA_hdd
-:SATA_hdd rdf:type owl:Class ;
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_ssd
+:PCIe_ssd rdf:type owl:Class ;
           rdfs:subClassOf :SSDInterface .
 
 
@@ -1167,15 +1167,15 @@
                     :hasChipset :AMD_B550 ;
                     :hasGraphicsCard :GeForce_RTX_3060_LHR ;
                     :hasHardDisc :SSD_hard_disc_first_PC ;
+                    :hasM.2Slot :M.2Slot_first_pc ;
                     :hasPCIe :PCIe_x16_first_pc ,
                              :PCIe_x16_first_pc_second ,
                              :PCIe_x1_first_pc ;
                     :hasProcessorSocket :AM4 ;
                     :hasRAM :DDR4_first_pc ;
                     :hasSATA :SATA_III_first_pc ;
-                    :hasM.2Slot :M.2Slot_first_pc ;
-                    :numberOfRamSlots 4 ;
-                    :numberOfM.2Slots 2 .
+                    :numberOfM.2Slots 2 ;
+                    :numberOfRamSlots 4 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Asus_ROG_Strix_Impact_II
@@ -1417,14 +1417,14 @@
                            :hasChipset :Intel_H410 ;
                            :hasGraphicsCard :Intel_UHD_610 ;
                            :hasHardDisc :SSD_hard_disc_second_PC ;
+                           :hasM.2Slot :M.2Slot_second_pc ;
                            :hasPCIe :PCIe_x16_second_pc ,
                                     :PCIe_x1_second_pc ;
                            :hasProcessorSocket :LGA1200 ;
                            :hasRAM :DDR4_second_pc ;
                            :hasSATA :SATA_III_second_pc ;
-                           :hasM.2Slot :M.2Slot_second_pc ;
-                           :numberOfRamSlots 1 ;
-                           :numberOfM.2Slots 2 .
+                           :numberOfM.2Slots 2 ;
+                           :numberOfRamSlots 1 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#HD
@@ -1455,12 +1455,12 @@
                                                  :hasChipset :Intel_HM370 ;
                                                  :hasGraphicsCard :nVidia_GeForce_GTX_1650 ;
                                                  :hasHardDisc :SSD_hard_disc_first_laptop ;
+                                                 :hasM.2Slot :M.2Slot_first_laptop ;
                                                  :hasPCIe :PCIe_x16_first_laptop ;
                                                  :hasProcessorSocket :FCBGA1440 ;
                                                  :hasRAM :DDR4 ;
-                                                 :hasM.2Slot :M.2Slot_first_laptop ;
-                                                 :numberOfRamSlots 3 ;
-                                                 :numberOfM.2Slots 1 .
+                                                 :numberOfM.2Slots 1 ;
+                                                 :numberOfRamSlots 3 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#IPS
@@ -1771,12 +1771,12 @@
                                       :hasChipset :AMD_SoC_Platform ;
                                       :hasGraphicsCard :AMD_Radeon_Graphics ;
                                       :hasHardDisc :SSD_hard_disc_second_laptop ;
+                                      :hasM.2Slot :M.2Slot_second_laptop ;
                                       :hasPCIe :PCIe_x2_second_laptop ;
                                       :hasProcessorSocket :FT5 ;
                                       :hasRAM :DDR4_second_laptop ;
-                                      :hasM.2Slot :M.2Slot_second_laptop ;
-                                      :numberOfRamSlots 2 ;
-                                      :numberOfM.2Slots 1 .
+                                      :numberOfM.2Slots 1 ;
+                                      :numberOfRamSlots 2 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Lithium-Ion
@@ -1789,6 +1789,39 @@
               :M.2 .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2Slot_2_first_pc
+:M.2Slot_2_first_pc rdf:type owl:NamedIndividual ,
+                             :M.2Slot ;
+                    :supports :PCIe_1.1 ,
+                              :SATA_hdd_slot .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2Slot_first_laptop
+:M.2Slot_first_laptop rdf:type owl:NamedIndividual ,
+                               :M.2Slot ;
+                      :supports :PCIe_1 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2Slot_first_pc
+:M.2Slot_first_pc rdf:type owl:NamedIndividual ,
+                           :M.2Slot ;
+                  :supports :PCIe_2 ,
+                            :SATA_hdd_slot .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2Slot_second_laptop
+:M.2Slot_second_laptop rdf:type owl:NamedIndividual ,
+                                :M.2Slot ;
+                       :supports :PCIe_3 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#M.2Slot_second_pc
+:M.2Slot_second_pc rdf:type owl:NamedIndividual ,
+                            :M.2Slot ;
+                   :supports :PCIe_4 ,
+                             :SATA_hdd_slot .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCI_Express_3.0
 :PCI_Express_3.0 rdf:type owl:NamedIndividual ,
                           :PCIe_3.0 .
@@ -1799,14 +1832,49 @@
                           :PCIe_4.0 .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_1
+:PCIe_1 rdf:type owl:NamedIndividual ,
+                 :PCIe_ssd ;
+        :PCIeLanes 4 ;
+        :PCIeVersion 3 .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_1.0
 :PCIe_1.0 rdf:type owl:NamedIndividual ,
                    :PCIe_1.0 .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_1.1
+:PCIe_1.1 rdf:type owl:NamedIndividual ,
+                   :PCIe_ssd ;
+          :PCIeLanes 4 ;
+          :PCIeVersion 3 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_2
+:PCIe_2 rdf:type owl:NamedIndividual ,
+                 :PCIe_ssd ;
+        :PCIeLanes 4 ;
+        :PCIeVersion 4 .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_2.0
 :PCIe_2.0 rdf:type owl:NamedIndividual ,
                    :PCIe_2.0 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_3
+:PCIe_3 rdf:type owl:NamedIndividual ,
+                 :PCIe_ssd ;
+        :PCIeLanes 4 ;
+        :PCIeVersion 3 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_4
+:PCIe_4 rdf:type owl:NamedIndividual ,
+                 :PCIe_ssd ;
+        :PCIeLanes 2 ;
+        :PCIeVersion 2 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#PCIe_x16_first_laptop
@@ -1895,10 +1963,20 @@
                    :numberOfSata 4 .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_III_hdd
+:SATA_III_hdd rdf:type owl:NamedIndividual ,
+                       :SSDInterface .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_III_second_pc
 :SATA_III_second_pc rdf:type owl:NamedIndividual ,
                              :SATA_III ;
                     :numberOfSata 4 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SATA_hdd_slot
+:SATA_hdd_slot rdf:type owl:NamedIndividual ,
+                        :SATA_hdd .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSD_hard_disc_first_PC
@@ -1907,7 +1985,8 @@
                         :hasFormFactor :M.2 ;
                         :hasSSDCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_TB> ;
                         :hasSSDInterface :PCIe_2 ;
-                        :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#7000_MB/s> .
+                        :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#7000_MB/s> ;
+                        :hasNVMeProtocol "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSD_hard_disc_first_laptop
@@ -1916,7 +1995,8 @@
                             :hasFormFactor :M.2 ;
                             :hasSSDCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#256_GB> ;
                             :hasSSDInterface :PCIe_1 ;
-                            :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1700_MB/s> .
+                            :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1700_MB/s> ;
+                            :hasNVMeProtocol "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSD_hard_disc_second_PC
@@ -1925,7 +2005,8 @@
                          :hasFormFactor :mSATA ;
                          :hasSSDCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#240_GB> ;
                          :hasSSDInterface :SATA_III_hdd ;
-                         :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#500_MB/s> .
+                         :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#500_MB/s> ;
+                         :hasNVMeProtocol "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#SSD_hard_disc_second_laptop
@@ -1934,7 +2015,8 @@
                              :hasFormFactor :M.2 ;
                              :hasSSDCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#256_GB> ;
                              :hasSSDInterface :PCIe_3 ;
-                             :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1200_MB/s> .
+                             :hasSSDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1200_MB/s> ;
+                             :hasNVMeProtocol "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#TN
@@ -1947,8 +2029,9 @@
                                         :HDD ;
                                :hasHDDCapacity <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#8_TB> ;
                                :hasHDDInterface :SATA_3 ;
-                               :hasHDDSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5''> ;
-                               :hasHDDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#7200_rpm> .
+                               :hasHDDSize <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5inch> ;
+                               :hasHDDSpeed <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#7200_rpm> ;
+                               :hasNVMeProtocol "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#White_Shark_Tastatura_GK-1923_Gladiator_2
@@ -2017,84 +2100,6 @@
                          :discreteGCSlot :PCIe_x16_first_laptop ;
                          :discreteMemory <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4GB_GC_memory> ;
                          :discreteMemoryType :GDDR6 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#M.2Slot_2_first_pc
-:M.2Slot_2_first_pc rdf:type owl:NamedIndividual ,
-                             :M.2Slot ;
-                    :supports :PCIe_1.1 ,
-                              :SATA_hdd_slot .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#M.2Slot_first_laptop
-:M.2Slot_first_laptop rdf:type owl:NamedIndividual ,
-                               :M.2Slot ;
-                      :supports :PCIe_1 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#M.2Slot_first_pc
-:M.2Slot_first_pc rdf:type owl:NamedIndividual ,
-                           :M.2Slot ;
-                  :supports :PCIe_2 ,
-                            :SATA_hdd_slot .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#M.2Slot_second_laptop
-:M.2Slot_second_laptop rdf:type owl:NamedIndividual ,
-                                :M.2Slot ;
-                       :supports :PCIe_3 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#M.2Slot_second_pc
-:M.2Slot_second_pc rdf:type owl:NamedIndividual ,
-                            :M.2Slot ;
-                   :supports :PCIe_4 ,
-                             :SATA_hdd_slot .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_1
-:PCIe_1 rdf:type owl:NamedIndividual ,
-                 :PCIe ;
-        :PCIeLanes 4 ;
-        :PCIeVersion 3 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_1.1
-:PCIe_1.1 rdf:type owl:NamedIndividual ,
-                   :PCIe ;
-          :PCIeLanes 4 ;
-          :PCIeVersion 3 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_2
-:PCIe_2 rdf:type owl:NamedIndividual ,
-                 :PCIe ;
-        :PCIeLanes 4 ;
-        :PCIeVersion 4 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_3
-:PCIe_3 rdf:type owl:NamedIndividual ,
-                 :PCIe ;
-        :PCIeLanes 4 ;
-        :PCIeVersion 3 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#PCIe_4
-:PCIe_4 rdf:type owl:NamedIndividual ,
-                 :PCIe ;
-        :PCIeLanes 2 ;
-        :PCIeVersion 2 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#SATA_III_hdd
-:SATA_III_hdd rdf:type owl:NamedIndividual ,
-                       :SSDInterface .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#SATA_hdd_slot
-:SATA_hdd_slot rdf:type owl:NamedIndividual ,
-                        :SATA_hdd .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
@@ -2328,9 +2333,9 @@
                                                                                                                   :CacheCapacity .
 
 
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5''
-<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5''> rdf:type owl:NamedIndividual ,
-                                                                                                                   <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5''> .
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5inch
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5inch> rdf:type owl:NamedIndividual ,
+                                                                                                                     <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.5''> .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#3.7_GHz

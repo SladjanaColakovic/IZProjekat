@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projekat.inzinjering.dto.RAMDTO;
+import com.projekat.inzinjering.dto.HardDiskDTO;
 import com.projekat.inzinjering.dto.ProcessorDTO;
 import com.projekat.inzinjering.dto.RAMProcessorSuggestionDTO;
 import com.projekat.inzinjering.service.ComponentSuggestionService;
+import com.projekat.inzinjering.service.HardDiskSuggestionService;
 import com.projekat.inzinjering.service.ProcessorSuggestionService;
 import com.projekat.inzinjering.service.RamSuggestionService;
 
@@ -33,6 +35,9 @@ public class ComponentSuggestionController
 	
 	@Autowired
     private ProcessorSuggestionService processorService;
+	
+	@Autowired
+    private HardDiskSuggestionService hddService;
 	
 	@PostMapping(value = "/ramSuggestion")
 	/*public String hello() {
@@ -64,7 +69,13 @@ public class ComponentSuggestionController
 	public ResponseEntity<?> compatibleProcessors(@RequestBody RAMProcessorSuggestionDTO dto) {
 		List<ProcessorDTO> result = processorService.getCompatibleProcessors(dto.getMotherboard());
 		return new ResponseEntity<>(result, HttpStatus.OK);  
-	}  
+	} 
+	
+	@PostMapping(value = "/hddSuggestion")
+	public ResponseEntity<?> compatibleHardDisks(@RequestBody RAMProcessorSuggestionDTO dto) {
+		List<HardDiskDTO> result = hddService.getCompatibleHDD(dto.getMotherboard(), dto.getComputer());
+		return new ResponseEntity<>(result, HttpStatus.OK);  
+	} 
 	
 	
 }  
