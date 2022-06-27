@@ -13,12 +13,15 @@ export class ComponentSuggestionComponent implements OnInit {
   motherboardsForRam: any[];
   motherboardsForProcessor: any[];
   motherboardsForHDD: any[];
+  motherboardsForGC: any[];
   processors: any[];
   selectedMotherboardForRam = "";
   selectedMotherboardForProcessor = "";
   rams: any[];
   hdds: any[];
+  gcs: any[];
   selectedMotherboardForHDD = "";
+  selectedMotherboardForGC = "";
   selectedComputerForHDD = "";
 
 
@@ -27,6 +30,7 @@ export class ComponentSuggestionComponent implements OnInit {
       this.motherboardsForRam = response;
       this.motherboardsForProcessor = response;
       this.motherboardsForHDD = response;
+      this.motherboardsForGC = response;
       console.log(this.motherboardsForRam)
     })
   }
@@ -63,6 +67,17 @@ export class ComponentSuggestionComponent implements OnInit {
     this.service.hddSuggestion(data).subscribe((response: any) => {
       this.hdds = response;
       console.log(this.hdds)
+    })
+  }
+
+  suggestGC(){
+    console.log(this.selectedMotherboardForGC)
+    let data = {
+      motherboard: this.selectedMotherboardForGC,
+    }
+    this.service.gcSuggestion(data).subscribe((response: any) => {
+      this.gcs = response;
+      console.log(this.gcs)
     })
   }
 

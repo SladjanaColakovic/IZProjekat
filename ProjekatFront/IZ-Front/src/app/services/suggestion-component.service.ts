@@ -25,6 +25,10 @@ export class SuggestionComponentService {
     return this.http.post(this.baseURL + "/api/suggestion/hddSuggestion", data);      
   }
 
+  gcSuggestion(data:any) {
+    return this.http.post(this.baseURL + "/api/suggestion/gcSuggestion", data);      
+  }
+
 }
 
 
