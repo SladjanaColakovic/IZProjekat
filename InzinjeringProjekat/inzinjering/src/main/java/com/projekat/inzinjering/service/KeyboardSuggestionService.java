@@ -113,8 +113,10 @@ public class KeyboardSuggestionService {
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("backlight");
+                String backlight;
+                if(r==null) backlight=null;
                 String[] array = r.toString().split("#");
-                String backlight = array[1];
+                backlight = array[1];
                 return backlight.replace("_", "");   
             }
         } catch(Exception e) {
