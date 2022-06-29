@@ -2037,6 +2037,9 @@
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#White_Shark_Tastatura_GK-1923_Gladiator_2
 :White_Shark_Tastatura_GK-1923_Gladiator_2 rdf:type owl:NamedIndividual ,
                                                     :Keyboard ;
+                                           :keyboardSupportOperatingSystem :Windows_10 ,
+                                                                           :Windows_7 ,
+                                                                           :Windows_8 ;
                                            :typeOfKeyboardBacklight :Cool_Rainbow_LED ;
                                            :typeOfKeyboardConnection :Wired_keyboard_connection ;
                                            :hasKeyboardBacklight "true"^^xsd:boolean .
@@ -2080,6 +2083,7 @@
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#XwaveX_02_YU
 :XwaveX_02_YU rdf:type owl:NamedIndividual ,
                        :Keyboard ;
+              :keyboardSupportOperatingSystem :Windows_7 ;
               :typeOfKeyboardConnection :Wired_keyboard_connection ;
               :hasKeyboardBacklight "false"^^xsd:boolean .
 
@@ -2100,6 +2104,16 @@
                          :discreteGCSlot :PCIe_x16_first_laptop ;
                          :discreteMemory <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4GB_GC_memory> ;
                          :discreteMemoryType :GDDR6 .
+
+
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#LOGITECH_K400_PLUS
+:LOGITECH_K400_PLUS rdf:type owl:NamedIndividual ,
+                             :Keyboard ;
+                    :keyboardSupportOperatingSystem :Windows_10 ,
+                                                    :Windows_7 ,
+                                                    :Windows_8 ;
+                    :typeOfKeyboardConnection :Wireless_keyboard ;
+                    :hasKeyboardBacklight "false"^^xsd:boolean .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB

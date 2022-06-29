@@ -1,13 +1,13 @@
 package com.projekat.inzinjering.dto;
 
 public class MouseDTO {
-	public String name;
-	public String acceleration;
-	public String backlight;
-	public String response;
-	public String minResolution;
-	public String maxResolution;
-	public String getName() {
+	private String name;
+	private String acceleration;
+	private String backlight;
+	private String response;
+	private String minResolution;
+	private String maxResolution;
+	private String getName() {
 		return name;
 	}
 	public void setName(String name) {
