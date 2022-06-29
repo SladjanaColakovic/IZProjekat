@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.projekat.inzinjering.dto.RAMDTO;
 import com.projekat.inzinjering.dto.GraphicsCardDTO;
 import com.projekat.inzinjering.dto.HardDiskDTO;
+import com.projekat.inzinjering.dto.MouseDTO;
+import com.projekat.inzinjering.dto.MouseKeybordSuggestionDTO;
 import com.projekat.inzinjering.dto.ProcessorDTO;
 import com.projekat.inzinjering.dto.RAMProcessorSuggestionDTO;
 import com.projekat.inzinjering.service.ComponentSuggestionService;
 import com.projekat.inzinjering.service.GraphicsCardSuggestionService;
 import com.projekat.inzinjering.service.HardDiskSuggestionService;
+import com.projekat.inzinjering.service.MouseSuggestionService;
 import com.projekat.inzinjering.service.ProcessorSuggestionService;
 import com.projekat.inzinjering.service.RamSuggestionService;
 
@@ -43,6 +46,9 @@ public class ComponentSuggestionController
 	
 	@Autowired
 	private GraphicsCardSuggestionService gcService;
+	
+	@Autowired
+	private MouseSuggestionService mouseService;
 	
 	@PostMapping(value = "/ramSuggestion")
 	/*public String hello() {
@@ -85,6 +91,12 @@ public class ComponentSuggestionController
 	@PostMapping(value = "/gcSuggestion")
 	public ResponseEntity<?> compatibleGCs(@RequestBody RAMProcessorSuggestionDTO dto) {
 		List<GraphicsCardDTO> result = gcService.getCompatibleGC(dto.getMotherboard(), dto.getComputer());
+		return new ResponseEntity<>(result, HttpStatus.OK);  
+	} 
+	
+	@PostMapping(value = "/mouseSuggestion")
+	public ResponseEntity<?> compatible(@RequestBody MouseKeybordSuggestionDTO dto) {
+		List<MouseDTO> result = mouseService.getCompatibleMouses(dto);
 		return new ResponseEntity<>(result, HttpStatus.OK);  
 	} 
 }  
