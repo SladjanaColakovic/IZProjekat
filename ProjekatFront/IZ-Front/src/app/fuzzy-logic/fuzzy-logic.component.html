@@ -1,0 +1,62 @@
+<div>
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Fuzzy logic</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="processor"><i>Processor</i></label>
+                <select [(ngModel)]="selectedProcessor" id="processor" name="processor">
+                    <option *ngFor="let p of processors" [ngValue]="p">{{p}}</option>
+                </select>
+
+                <select [(ngModel)]="selectedGC" id="gc" name="gc">
+                    <option *ngFor="let gc of gcs" [ngValue]="gc">{{gc}}</option>
+                </select>
+
+                <select [(ngModel)]="selectedRAM" id="ram" name="ram">
+                    <option>DDR4 4 GB</option>
+                    <option>DDR4 8 GB</option>
+                    <option>DDR4 16 GB</option>
+                    <option>DDR4 32 GB</option>
+                    <option>DDR4 64 GB</option>
+                    <option>DDR4 128 GB</option>
+                    <option>DDR3 4 GB</option>
+                    <option>DDR2 2 GB</option>
+                    <option>DDR5 8 GB</option>
+                </select>
+
+                <select [(ngModel)]="selectedHD" id="hd" name="hd">
+                    <option>HDD 8000 GB</option>
+                    <option>SSD 256 GB</option>
+                    <option>SSD 240 GB</option>
+                    <option>SSD 476 GB</option>
+                    <option>SSD 120 GB</option>
+                    <option>SSD 350 GB</option>
+                    <option>SSD 100 GB</option>
+                </select>
+
+                <select [(ngModel)]="os" id="os" name="os">
+                    <option>Linux</option>
+                    <option>Windows 7</option>
+                    <option>Windows 8</option>
+                    <option>Windows 10</option>
+                    <option>Windows XP</option>
+                    <option>Windows Vista</option>
+                </select>
+
+                <button (click)="fuzzy()"><i>Fuzzy</i></button>
+            </div>
+        </div>
+        <!--<div *ngIf="rams != null" class="col-6">
+            <div class="part2">
+                <h2><i>RAM</i></h2>
+                <ul *ngFor="let ram of rams">
+                    <li><i>{{ram.manufacturer}} {{ram.type}}-{{ram.speed}} {{ram.capacity}} {{ram.layout}}</i></li>
+
+                </ul>
+            </div>
+        </div>-->
+    </div>
+
+</div>
