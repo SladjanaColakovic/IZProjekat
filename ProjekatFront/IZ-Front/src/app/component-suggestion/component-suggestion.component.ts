@@ -27,6 +27,9 @@ export class ComponentSuggestionComponent implements OnInit {
   selectedOS = ""
   mouseConnection = ""
   mouses: any[]
+  selectedOSForKeyboard = ""
+  keyboardConnection = ""
+  keyboards: any[]
 
 
   ngOnInit(): void {
@@ -99,5 +102,20 @@ export class ComponentSuggestionComponent implements OnInit {
       console.log(this.mouses)
     })
   }
+
+  suggestKeyboard(){
+    console.log(this.selectedOSForKeyboard)
+    console.log(this.keyboardConnection)
+
+    let data = {
+      operatingSystem: this.selectedOSForKeyboard,
+      connection: this.keyboardConnection
+    }
+    this.service.keyboardSuggestion(data).subscribe((response: any) => {
+      this.keyboards = response;
+      console.log(this.keyboards)
+    })
+  }
+  
 
 }
