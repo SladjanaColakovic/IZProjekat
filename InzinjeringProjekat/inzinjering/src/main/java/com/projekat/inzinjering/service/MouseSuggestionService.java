@@ -268,6 +268,73 @@ public class MouseSuggestionService {
         return "";
 	}
 	
+	private String tracingSpeed (String mouse) {
+		String queryString = 
+				"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+				 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+				 + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+				 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+				 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+				 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+				 + "SELECT ?speed " 
+				 + "WHERE "
+				 + "{"
+				 + "base:"
+				 + mouse
+				 + " base:hasTracingSpeed ?speed}";
+		
+		Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            ResultSet results = qexec.execSelect();
+            while (results.hasNext()) {
+                QuerySolution solution = results.nextSolution();
+                Resource r = solution.getResource("speed");
+                String speed;
+                String[] array = r.toString().split("#");
+                speed = array[1];
+                return speed.replace("_", "");   
+            }
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }
+        
+        return "";
+	}
+	
+	private boolean hasTracingSpeed (String mouse) {
+		String queryString = 
+				"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+				 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+				 + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+				 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
+				 + "PREFIX base: <http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#>"
+				 + "PREFIX iz: <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#>"
+				 + "ASK " 
+				 + "WHERE "
+				 + "{"
+				 + "base:"
+				 + mouse
+				 + " base:hasTracingSpeed []}";
+		
+		Query query = QueryFactory.create(queryString);
+        System.out.println(query);
+        QueryExecution qexec = QueryExecutionFactory.create(query, model);
+        try {
+            boolean result = qexec.execAsk();
+            return result;
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }finally {
+            qexec.close();
+        }
+        
+        return false;
+	}
+	
 	private List<MouseDTO> suggestCompatibleMouses(List<String> mouses) {
 		List<MouseDTO> compatibleMouses = new ArrayList<>();
 		
@@ -278,12 +345,19 @@ public class MouseSuggestionService {
 			String minResolution = minResolution(m);
 			String maxResolution = maxResolution(m);
 			String backlight = backlight(m);
-			mouse.setName(m.replace('_', ' '));
+			boolean hasTracingSpeed = hasTracingSpeed(m);
+			String speed = "";
+			if(hasTracingSpeed) {
+				speed = tracingSpeed(m);
+			}
+			System.out.println("Mouse: "+ m);
+			mouse.setName(m.replace("_", " "));
 			mouse.setResponse(response);
 			mouse.setAcceleration(acceleration);
 			mouse.setMinResolution(minResolution);
 			mouse.setMaxResolution(maxResolution);
 			mouse.setBacklight(backlight);
+			mouse.setTracingSpeed(speed);
 			compatibleMouses.add(mouse);			
 		}
 		

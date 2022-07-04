@@ -29,6 +29,14 @@ export class SuggestionComponentService {
     return this.http.post(this.baseURL + "/api/suggestion/gcSuggestion", data);      
   }
 
+  mouseSuggestion(data:any) {
+    return this.http.post(this.baseURL + "/api/suggestion/mouseSuggestion", data);      
+  }
+
+  keyboardSuggestion(data:any) {
+    return this.http.post(this.baseURL + "/api/suggestion/keyboardSuggestion", data);      
+  }
+
 }
 
 

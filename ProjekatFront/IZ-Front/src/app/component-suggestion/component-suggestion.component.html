@@ -106,4 +106,37 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Mouse Suggestion</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="os"><i>Operating System</i></label>
+                <select [(ngModel)]="selectedOS" id="os" name="os">
+                    <option>Windows_7</option>
+                    <option>Windows_8</option>
+                    <option>Windows_10</option>
+                    <option>macOS</option>
+                </select>
+                <label for="mouseConnection"><i>Type of mouse connection</i></label>
+                <select [(ngModel)]="mouseConnection" id="mouseConnection" name="mouseConnection">
+                    <option>Wired_mouse_connection</option>
+                    <option>Wireless_mouse_connection</option>
+                </select>
+                <button (click)="suggestMouse()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="mouses != null" class="col-6">
+            <div class="part2">
+                <h2><i>Mouses</i></h2>
+                <ul *ngFor="let m of mouses">
+                    <li><i>{{m.name}}  Resoulution: {{m.minResolution}}-{{m.maxResolution}}  Tracing speed: {{m.tracingSpeed}}  Acceleration: {{m.acceleration}}  Response:
+                        {{m.response}}  Backlight: {{m.backligh}}</i></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

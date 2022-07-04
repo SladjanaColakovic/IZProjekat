@@ -24,6 +24,9 @@ export class ComponentSuggestionComponent implements OnInit {
   selectedMotherboardForGC = "";
   selectedComputerForHDD = "";
   selectedComputerForGC = "";
+  selectedOS = ""
+  mouseConnection = ""
+  mouses: any[]
 
 
   ngOnInit(): void {
@@ -80,6 +83,20 @@ export class ComponentSuggestionComponent implements OnInit {
     this.service.gcSuggestion(data).subscribe((response: any) => {
       this.gcs = response;
       console.log(this.gcs)
+    })
+  }
+
+  suggestMouse(){
+    console.log(this.selectedOS)
+    console.log(this.mouseConnection)
+
+    let data = {
+      operatingSystem: this.selectedOS,
+      connection: this.mouseConnection
+    }
+    this.service.mouseSuggestion(data).subscribe((response: any) => {
+      this.mouses = response;
+      console.log(this.mouses)
     })
   }
 
