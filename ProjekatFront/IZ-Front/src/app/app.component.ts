@@ -21,4 +21,9 @@ export class AppComponent {
     this.router.navigate(['/componentSuggestion']);
     this.isHomePage = false;
   }
+
+  fuzzy(){
+    this.router.navigate(['/fuzzy']);
+    this.isHomePage = false;
+  }
 }

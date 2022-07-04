@@ -162,7 +162,9 @@ Model model = ModelFactory.createDefaultModel();
         return "";		
 	}
 	
-	private String gcMemory(String gc) {
+	public String gcMemory(String gc) {
+		InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
+        RDFDataMgr.read(model,is,Lang.TURTLE); 
         String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -187,7 +189,7 @@ Model model = ModelFactory.createDefaultModel();
             	QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("memory");
                 String result = r.toString().split("#")[1];
-                
+                System.out.println(result);
                 return result;
             }
         } catch(Exception e) {

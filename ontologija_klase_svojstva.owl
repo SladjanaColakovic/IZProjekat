@@ -1748,6 +1748,16 @@
                               :Intel_Core_i5-10600K .
 
 
+###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#LOGITECH_K400_PLUS
+:LOGITECH_K400_PLUS rdf:type owl:NamedIndividual ,
+                             :Keyboard ;
+                    :keyboardSupportOperatingSystem :Windows_10 ,
+                                                    :Windows_7 ,
+                                                    :Windows_8 ;
+                    :typeOfKeyboardConnection :Wireless_keyboard ;
+                    :hasKeyboardBacklight "false"^^xsd:boolean .
+
+
 ###  http://www.semanticweb.org/hp/ontologies/2022/3/untitled-ontology-7#Lenovo_Laptop_81W100K2YA
 :Lenovo_Laptop_81W100K2YA rdf:type owl:NamedIndividual ,
                                    :Laptop ;
@@ -2102,18 +2112,8 @@
 :nVidia_GeForce_GTX_1650 rdf:type owl:NamedIndividual ,
                                   :DiscreteGC ;
                          :discreteGCSlot :PCIe_x16_first_laptop ;
-                         :discreteMemory <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4GB_GC_memory> ;
+                         :discreteMemory <https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_GB_GC_memory> ;
                          :discreteMemoryType :GDDR6 .
-
-
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#LOGITECH_K400_PLUS
-:LOGITECH_K400_PLUS rdf:type owl:NamedIndividual ,
-                             :Keyboard ;
-                    :keyboardSupportOperatingSystem :Windows_10 ,
-                                                    :Windows_7 ,
-                                                    :Windows_8 ;
-                    :typeOfKeyboardConnection :Wireless_keyboard ;
-                    :hasKeyboardBacklight "false"^^xsd:boolean .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#1_MB
@@ -2413,9 +2413,9 @@
                                                                                                                     :CacheCapacity .
 
 
-###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4GB_GC_memory
-<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4GB_GC_memory> rdf:type owl:NamedIndividual ,
-                                                                                                                           :DiscreteGCMemory .
+###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_GB_GC_memory
+<https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_GB_GC_memory> rdf:type owl:NamedIndividual ,
+                                                                                                                            :DiscreteGCMemory .
 
 
 ###  https://raw.githubusercontent.com/SladjanaColakovic/IZProjekat/instance-s/ontologija_instance.owl#4_GB_RAM

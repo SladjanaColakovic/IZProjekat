@@ -7,12 +7,8 @@ public class MouseDTO {
 	private String response;
 	private String minResolution;
 	private String maxResolution;
-	private String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	private String tracingSpeed;
+	
 	public String getAcceleration() {
 		return acceleration;
 	}
@@ -43,6 +39,22 @@ public class MouseDTO {
 	public void setMaxResolution(String maxResolution) {
 		this.maxResolution = maxResolution;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTracingSpeed() {
+		return tracingSpeed;
+	}
+	public void setTracingSpeed(String tracingSpeed) {
+		this.tracingSpeed = tracingSpeed;
+	}
+	
+	
+	
+	
 	
 	
 		
