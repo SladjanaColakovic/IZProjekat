@@ -252,7 +252,9 @@ public class ProcessorSuggestionService {
         return processors;	
 	}
 	
-	private String processorFrequency(String processor) {
+	public String processorFrequency(String processor) {
+		InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
+        RDFDataMgr.read(model,is,Lang.TURTLE); 
         String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -276,9 +278,11 @@ public class ProcessorSuggestionService {
             while (results.hasNext()) {
                 QuerySolution solution = results.nextSolution();
                 Resource r = solution.getResource("frequency");
+                System.out.println(r.toString());
                 String[] array = r.toString().split("#");
                 String frequency = array[1];
-                return frequency.replace("_", "");
+                System.out.println(frequency);
+                return frequency.replace("_", " ");
                 
             }
         } catch(Exception e) {
@@ -363,6 +367,8 @@ public class ProcessorSuggestionService {
 	}
 	
 	public int processorCores(String processor) {
+		InputStream is = TypeReference.class.getResourceAsStream("/ontologija.owl");
+        RDFDataMgr.read(model,is,Lang.TURTLE); 
         String queryString = 
         		"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                 + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"

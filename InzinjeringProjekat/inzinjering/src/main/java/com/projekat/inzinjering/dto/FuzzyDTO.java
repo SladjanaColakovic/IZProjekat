@@ -5,7 +5,6 @@ public class FuzzyDTO {
 	private String processor;
 	private String GC;
 	private String RAM;
-	private String OS;
 	private String HD;
 	public String getProcessor() {
 		return processor;
@@ -24,12 +23,6 @@ public class FuzzyDTO {
 	}
 	public void setRAM(String rAM) {
 		RAM = rAM;
-	}
-	public String getOS() {
-		return OS;
-	}
-	public void setOS(String oS) {
-		OS = oS;
 	}
 	public String getHD() {
 		return HD;

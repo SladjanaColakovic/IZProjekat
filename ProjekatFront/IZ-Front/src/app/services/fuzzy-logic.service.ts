@@ -12,8 +12,12 @@ export class FuzzyLogicService {
   getProcessors() {
     return this.http.get(this.baseURL + "/api/fuzzy/processors");
   }
-
   getGCs() {
     return this.http.get(this.baseURL + "/api/fuzzy/gcs");
   }
+  fuzzy(data: any) {
+    return this.http.post(this.baseURL + "/api/fuzzy/fuzzy", data);
+  }
+
+
 }

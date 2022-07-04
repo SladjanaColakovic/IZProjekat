@@ -1,0 +1,202 @@
+
+FUNCTION_BLOCK comparing
+
+VAR_INPUT               // ulazne varijable
+	cores : REAL;
+	frequency: REAL;
+	gcMemory : REAL;
+	ram : REAL;
+	hd : REAL;
+END_VAR
+
+VAR_OUTPUT              // izlazne varijable
+	home : REAL;
+	gaming : REAL;
+	video_editing : REAL;
+	crypto_mining : REAL;
+	business : REAL;
+END_VAR
+
+FUZZIFY cores
+	TERM low_level := (2, 1) (5, 0);
+	TERM medium_level := (4, 0) (6, 1) (10, 0);
+	TERM high_level := (8, 0) (16, 1) (20, 0);
+END_FUZZIFY
+
+FUZZIFY frequency
+	TERM low_level := (1, 1) (2.1, 0);
+	TERM medium_level := (2, 0) (2.6, 1) (3.1, 0);
+	TERM high_level := (3, 0) (3.5, 1) (4.2, 0);
+END_FUZZIFY
+
+FUZZIFY gcMemory
+	TERM low_level := (0, 1) (3, 0);
+	TERM medium_level := (2, 0) (8, 1) (11, 0);
+	TERM high_level := (10, 0) (16, 1) (24, 0);
+END_FUZZIFY
+
+FUZZIFY ram
+	TERM low_level := (2, 1) (9, 0);
+	TERM medium_level := (8, 0) (16, 1) (32, 0);
+	TERM high_level := (30, 0) (64, 1) (128, 0);
+END_FUZZIFY
+
+FUZZIFY hd
+	TERM low_level := (64, 0) (120, 1) (270, 0);
+	TERM medium_level := (260, 0) (512, 1) (990, 0);
+	TERM high_level := (980, 0) (4000, 1) (8000, 0);
+END_FUZZIFY
+
+DEFUZZIFY home
+	TERM low_level := (0, 1) (0.4, 0);
+	TERM medium_level := (0.3, 0) (0.5, 1) (0.75, 0);
+	TERM high_level := (0.7, 0) (0.9, 1) (1, 1);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 0;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY
+
+DEFUZZIFY gaming
+	TERM low_level := (0, 1) (0.4, 0);
+	TERM medium_level := (0.3, 0) (0.5, 1) (0.75, 0);
+	TERM high_level := (0.7, 0) (0.9, 1) (1, 1);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 0;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY
+
+DEFUZZIFY video_editing
+	TERM low_level := (0, 1) (0.4, 0);
+	TERM medium_level := (0.3, 0) (0.5, 1) (0.75, 0);
+	TERM high_level := (0.7, 0) (0.9, 1) (1, 1);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 0;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY
+
+
+DEFUZZIFY crypto_mining
+	TERM low_level := (0, 1) (0.4, 0);
+	TERM medium_level := (0.3, 0) (0.5, 1) (0.75, 0);
+	TERM high_level := (0.7, 0) (0.9, 1) (1, 1);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 0;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY
+
+DEFUZZIFY business
+	TERM low_level := (0, 1) (0.4, 0);
+	TERM medium_level := (0.3, 0) (0.5, 1) (0.75, 0);
+	TERM high_level := (0.7, 0) (0.9, 1) (1, 1);
+	METHOD : COG;		// 'Center Of Gravity' odn. centar mase (koristi se i MM odn. mean max)
+	DEFAULT := 0;		// podrazumevana vrednost (ukoliko nijedno pravilo nije aktivirano)
+END_DEFUZZIFY
+
+RULEBLOCK blok1
+	AND : MIN;			// za konjunkciju se koristi minimum (samim tim sa za disjunkciju koristi maksimum)
+	ACT : MIN;			// za zaključivanje (implikaciju) je izabran minimum (Mamdani implikacija) (osim MIN koristi se i PROD)
+	ACCU : MAX;			// za kompoziciju je izabran maksimum (osim MAX koristi se i SUM)
+
+	//home	
+	RULE 1 : IF gcMemory IS high_level OR ram is high_level OR hd IS high_level THEN home IS low_level;
+	RULE 2 : IF gcMemory IS medium_level OR ram is medium_level THEN home IS low_level;
+	RULE 3 : IF cores IS medium_level AND frequency IS medium_level AND hd IS medium_level THEN home IS low_level;
+	RULE 4 : IF cores IS medium_level AND frequency IS medium_level AND hd IS low_level THEN home IS medium_level;
+	RULE 5 : IF cores IS low_level AND frequency IS low_level AND hd IS low_level THEN home IS high_level;
+	RULE 6 : IF cores IS low_level AND frequency IS low_level AND hd IS medium_level THEN home IS high_level;
+	RULE 7 : IF cores IS medium_level AND frequency IS low_level AND hd IS low_level THEN home IS high_level;
+	RULE 8 : IF cores IS low_level AND frequency IS medium_level AND hd IS low_level THEN home IS high_level;
+	RULE 9 : IF cores IS medium_level AND frequency IS low_level AND hd IS medium_level THEN home IS medium_level;
+	RULE 10 : IF cores IS low_level AND frequency IS medium_level AND hd IS medium_level THEN home IS medium_level;
+	RULE 11 : IF cores IS high_level AND frequency IS high_level AND hd IS low_level THEN home IS medium_level;
+	RULE 12 : IF cores IS high_level AND frequency IS medium_level AND hd IS low_level THEN home IS medium_level;
+	RULE 13 : IF cores IS medium_level AND frequency IS high_level AND hd IS low_level THEN home IS medium_level;
+	RULE 14 : IF cores IS low_level AND frequency IS high_level AND hd IS low_level THEN home IS high_level;
+	RULE 15 : IF cores IS high_level AND frequency IS low_level AND hd IS low_level THEN home IS medium_level;
+	RULE 16 : IF cores IS high_level AND frequency IS high_level AND hd IS medium_level THEN home IS low_level;
+	RULE 17 : IF cores IS high_level AND frequency IS medium_level AND hd IS medium_level THEN home IS medium_level;
+	RULE 18 : IF cores IS medium_level AND frequency IS high_level AND hd IS medium_level THEN home IS low_level;
+	RULE 19 : IF cores IS low_level AND frequency IS high_level AND hd IS medium_level THEN home IS medium_level;
+	RULE 20 : IF cores IS high_level AND frequency IS low_level AND hd IS medium_level THEN home IS medium_level;
+
+	//business
+	RULE 21 : IF gcMemory IS high_level OR ram is high_level OR hd IS high_level THEN business IS low_level;
+	RULE 22 : IF gcMemory IS medium_level THEN business IS low_level;
+	RULE 23 : IF hd IS low_level OR frequency is low_level THEN business IS low_level;
+	RULE 24 : IF cores IS high_level AND frequency IS high_level AND ram IS medium_level THEN business IS medium_level;
+	RULE 25 : IF cores IS medium_level AND frequency IS high_level AND ram IS medium_level THEN business IS high_level;
+	RULE 26 : IF cores IS low_level AND frequency IS high_level AND ram IS medium_level THEN business IS high_level;
+	RULE 27 : IF cores IS high_level AND frequency IS medium_level AND ram IS medium_level THEN business IS medium_level;
+	RULE 28 : IF cores IS medium_level AND frequency IS medium_level AND ram IS medium_level THEN business IS high_level;
+	RULE 29 : IF cores IS low_level AND frequency IS medium_level AND ram IS medium_level THEN business IS high_level;
+	RULE 30 : IF cores IS high_level AND frequency IS high_level AND ram IS low_level THEN business IS medium_level;
+	RULE 31 : IF cores IS medium_level AND frequency IS high_level AND ram IS low_level THEN business IS medium_level;
+	RULE 32 : IF cores IS low_level AND frequency IS high_level AND ram IS low_level THEN business IS medium_level;
+	RULE 33 : IF cores IS high_level AND frequency IS medium_level AND ram IS low_level THEN business IS medium_level;
+	RULE 34 : IF cores IS medium_level AND frequency IS medium_level AND ram IS low_level THEN business IS high_level;
+	RULE 35 : IF cores IS low_level AND frequency IS medium_level AND ram IS low_level THEN business IS medium_level;
+	
+	//crypto-mining
+	RULE 36 : IF gcMemory IS low_level OR cores is low_level OR frequency IS low_level THEN crypto_mining IS low_level;
+	RULE 37 : IF ram IS high_level OR hd is high_level THEN crypto_mining IS low_level;
+	RULE 38 : IF frequency IS high_level AND ram is medium_level AND hd IS medium_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 39 : IF frequency IS medium_level AND ram is medium_level AND hd IS medium_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 40 : IF frequency IS high_level AND ram is low_level AND hd IS medium_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 41 : IF frequency IS medium_level AND ram is low_level AND hd IS medium_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 42 : IF frequency IS high_level AND ram is medium_level AND hd IS low_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 43 : IF frequency IS medium_level AND ram is medium_level AND hd IS low_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 44 : IF frequency IS high_level AND ram is low_level AND hd IS low_level AND gcMemory IS high_level THEN crypto_mining IS high_level;
+	RULE 45 : IF frequency IS medium_level AND ram is low_level AND hd IS low_level AND gcMemory IS high_level THEN crypto_mining IS medium_level;
+	RULE 46 : IF frequency IS high_level AND ram is medium_level AND hd IS medium_level AND gcMemory IS medium_level THEN crypto_mining IS high_level;
+	RULE 47 : IF frequency IS medium_level AND ram is medium_level AND hd IS medium_level AND gcMemory IS medium_level THEN crypto_mining IS high_level;
+	RULE 48 : IF frequency IS high_level AND ram is low_level AND hd IS medium_level AND gcMemory IS medium_level THEN crypto_mining IS high_level;
+	RULE 49 : IF frequency IS medium_level AND ram is low_level AND hd IS medium_level AND gcMemory IS medium_level THEN crypto_mining IS medium_level;	
+	RULE 50 : IF frequency IS high_level AND ram is medium_level AND hd IS low_level AND gcMemory IS medium_level THEN crypto_mining IS high_level;
+	RULE 51 : IF frequency IS medium_level AND ram is medium_level AND hd IS low_level AND gcMemory IS medium_level THEN crypto_mining IS medium_level;
+	RULE 52 : IF frequency IS high_level AND ram is low_level AND hd IS low_level AND gcMemory IS medium_level THEN crypto_mining IS high_level;
+	RULE 53 : IF frequency IS medium_level AND ram is low_level AND hd IS low_level AND gcMemory IS medium_level THEN crypto_mining IS medium_level;
+ 
+	//gaming
+	RULE 54 : IF gcMemory IS low_level OR cores is low_level OR frequency IS low_level OR hd IS low_level OR ram is low_level OR hd IS medium_level THEN gaming IS low_level;
+	RULE 55 : IF cores IS high_level AND frequency is high_level AND ram IS high_level AND gcMemory IS high_level THEN gaming IS medium_level;
+	RULE 56 : IF cores IS medium_level AND frequency is high_level AND ram IS high_level AND gcMemory IS high_level THEN gaming IS medium_level;
+	RULE 57 : IF cores IS high_level AND frequency is medium_level AND ram IS high_level AND gcMemory IS high_level THEN gaming IS medium_level;
+	RULE 58 : IF cores IS medium_level AND frequency is medium_level AND ram IS high_level AND gcMemory IS high_level THEN gaming IS medium_level;	
+	RULE 59 : IF cores IS high_level AND frequency is high_level AND ram IS medium_level AND gcMemory IS high_level THEN gaming IS high_level;
+	RULE 60 : IF cores IS medium_level AND frequency is high_level AND ram IS medium_level AND gcMemory IS high_level THEN gaming IS high_level;
+	RULE 61 : IF cores IS high_level AND frequency is medium_level AND ram IS medium_level AND gcMemory IS high_level THEN gaming IS high_level;
+	RULE 62 : IF cores IS medium_level AND frequency is medium_level AND ram IS medium_level AND gcMemory IS high_level THEN gaming IS high_level;
+	RULE 63 : IF cores IS high_level AND frequency is high_level AND ram IS high_level AND gcMemory IS medium_level THEN gaming IS medium_level;
+	RULE 64 : IF cores IS medium_level AND frequency is high_level AND ram IS high_level AND gcMemory IS medium_level THEN gaming IS medium_level;
+	RULE 65 : IF cores IS high_level AND frequency is medium_level AND ram IS high_level AND gcMemory IS medium_level THEN gaming IS medium_level;
+	RULE 66 : IF cores IS medium_level AND frequency is medium_level AND ram IS high_level AND gcMemory IS medium_level THEN gaming IS medium_level;
+	RULE 67 : IF cores IS high_level AND frequency is high_level AND ram IS medium_level AND gcMemory IS medium_level THEN gaming IS high_level;
+	RULE 68 : IF cores IS medium_level AND frequency is high_level AND ram IS medium_level AND gcMemory IS medium_level THEN gaming IS high_level;
+	RULE 69 : IF cores IS high_level AND frequency is medium_level AND ram IS medium_level AND gcMemory IS medium_level THEN gaming IS medium_level;
+	RULE 70 : IF cores IS medium_level AND frequency is medium_level AND ram IS medium_level AND gcMemory IS medium_level THEN gaming IS medium_level;
+
+	//video-editing
+	RULE 71 : IF cores IS low_level OR frequency is low_level OR ram IS low_level OR gcMemory IS low_level OR hd is low_level THEN video_editing IS low_level;
+    	RULE 72 : IF gcMemory IS medium_level THEN video_editing IS medium_level;
+    	RULE 73 : IF cores IS high_level AND frequency is high_level AND hd IS high_level AND ram IS high_level THEN video_editing IS high_level;
+    	RULE 74 : IF cores IS medium_level AND frequency is high_level AND hd IS high_level AND ram IS high_level THEN video_editing IS high_level;
+    	RULE 75 : IF cores IS high_level AND frequency is medium_level AND hd IS high_level AND ram IS high_level THEN video_editing IS high_level;
+    	RULE 76 : IF cores IS medium_level AND frequency is medium_level AND hd IS high_level AND ram IS high_level THEN video_editing IS medium_level;
+    	RULE 77 : IF cores IS high_level AND frequency is high_level AND hd IS medium_level AND ram IS high_level THEN video_editing IS high_level;
+    	RULE 78 : IF cores IS medium_level AND frequency is high_level AND hd IS medium_level AND ram IS high_level THEN video_editing IS medium_level;
+    	RULE 79 : IF cores IS high_level AND frequency is medium_level AND hd IS medium_level AND ram IS high_level THEN video_editing IS medium_level;
+    	RULE 80 : IF cores IS medium_level AND frequency is medium_level AND hd IS medium_level AND ram IS high_level THEN video_editing IS medium_level;
+	RULE 81 : IF cores IS high_level AND frequency is high_level AND hd IS high_level AND ram IS medium_level THEN video_editing IS high_level;
+    	RULE 82 : IF cores IS medium_level AND frequency is high_level AND hd IS high_level AND ram IS medium_level THEN video_editing IS high_level;
+    	RULE 83 : IF cores IS high_level AND frequency is medium_level AND hd IS high_level AND ram IS medium_level THEN video_editing IS medium_level;
+    	RULE 84 : IF cores IS medium_level AND frequency is medium_level AND hd IS high_level AND ram IS medium_level THEN video_editing IS medium_level;
+    	RULE 85 : IF cores IS high_level AND frequency is high_level AND hd IS medium_level AND ram IS medium_level THEN video_editing IS medium_level;
+    	RULE 86 : IF cores IS medium_level AND frequency is high_level AND hd IS medium_level AND ram IS medium_level THEN video_editing IS medium_level;
+    	RULE 87 : IF cores IS high_level AND frequency is medium_level AND hd IS medium_level AND ram IS medium_level THEN video_editing IS medium_level;
+    	RULE 88 : IF cores IS medium_level AND frequency is medium_level AND hd IS medium_level AND ram IS medium_level THEN video_editing IS medium_level;
+	
+	
+	
+	
+
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

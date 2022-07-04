@@ -12,7 +12,7 @@ export class FuzzyLogicComponent implements OnInit {
   selectedGC = ""
   selectedRAM = ""
   selectedHD = ""
-  os = ""
+  comparingResults : any[]
   processors: any[]
   gcs: any[]
 
@@ -30,7 +30,22 @@ export class FuzzyLogicComponent implements OnInit {
   }
 
   fuzzy(){
-    console.log(this.selectedProcessor)
+    console.log("Processor:", this.selectedProcessor)
+    console.log("GC:", this.selectedGC)
+    console.log("RAM:", this.selectedRAM)
+    console.log("HD", this.selectedHD)
+
+    let data = {
+      processor: this.selectedProcessor,
+      gc: this.selectedGC,
+      ram: this.selectedRAM,
+      hd: this.selectedHD,
+    }
+
+    this.service.fuzzy(data).subscribe((response: any) => {
+      this.comparingResults = response;
+      console.log(this.comparingResults)
+    }) 
   }
 
 }
