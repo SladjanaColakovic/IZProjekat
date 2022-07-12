@@ -1,0 +1,83 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node System_automatically_restart
+{
+     label = "C1";
+     position = (455 215);
+     states = ("true" "false");
+}
+
+node Software_or_driver_conflicts
+{
+     label = "C2";
+     position = (222 84);
+     states = ("conflict" "not_conflict");
+}
+
+node Processor_overheating
+{
+     label = "C3";
+     position = (708 21);
+     states = ("overheating" "not_overheating");
+}
+
+node Faulty_power_supply
+{
+     label = "C4";
+     position = (746 280);
+     states = ("faulty" "okay");
+}
+
+node Corrupted_system_memory
+{
+     label = "C5";
+     position = (338 369);
+     states = ("corrupted" "not_corrupted");
+}
+
+potential (System_automatically_restart | Corrupted_system_memory Faulty_power_supply Processor_overheating Software_or_driver_conflicts)
+{
+ data = ((((( 1.0 0.0 )
+( 0.96 0.04 ))
+(( 0.97 0.03 )
+( 0.93 0.07 )))
+((( 0.92 0.08 )
+( 0.89 0.11 ))
+(( 0.88 0.12 )
+( 0.8 0.2 ))))
+(((( 0.97 0.03 )
+( 0.93 0.07 ))
+(( 0.94 0.06 )
+( 0.9 0.1 )))
+((( 0.84 0.16 )
+( 0.8 0.2 ))
+(( 0.55 0.45 )
+( 0.0 1.0 )))));
+}
+
+potential (Software_or_driver_conflicts)
+{
+ data = ( 0.2 0.8 );
+}
+
+potential (Processor_overheating)
+{
+ data = ( 0.3 0.7 );
+}
+
+potential (Faulty_power_supply)
+{
+ data = ( 0.15 0.85 );
+}
+
+potential (Corrupted_system_memory)
+{
+ data = ( 0.1 0.9 );
+}
+
