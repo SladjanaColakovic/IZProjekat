@@ -26,4 +26,9 @@ export class AppComponent {
     this.router.navigate(['/fuzzy']);
     this.isHomePage = false;
   }
+
+  bayes(){
+    this.router.navigate(['/bayes']);
+    this.isHomePage = false;
+  }
 }

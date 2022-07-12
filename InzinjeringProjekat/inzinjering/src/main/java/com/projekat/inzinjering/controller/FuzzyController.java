@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projekat.inzinjering.dto.FuzzyDTO;
-import com.projekat.inzinjering.dto.RAMProcessorSuggestionDTO;
 import com.projekat.inzinjering.dto.ResponseFuzzyDTO;
 
 import com.projekat.inzinjering.service.FuzzyService;
