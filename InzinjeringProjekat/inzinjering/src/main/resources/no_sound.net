@@ -1,0 +1,83 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node no_sound
+{
+     label = "C1";
+     position = (575 238);
+     states = ("true" "false");
+}
+
+node speakers
+{
+     label = "C2";
+     position = (233 233);
+     states = ("working" "not_working");
+}
+
+node driver
+{
+     label = "C3";
+     position = (549 64);
+     states = ("faulty" "okay");
+}
+
+node bios
+{
+     label = "C4";
+     position = (916 240);
+     states = ("faulty" "okay");
+}
+
+node connection
+{
+     label = "C5";
+     position = (576 397);
+     states = ("not_working" "working");
+}
+
+potential (no_sound | connection bios speakers driver)
+{
+ data = ((((( 1.0 0.0 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 1.0 0.0 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 ))))
+(((( 0.98 0.02 )
+( 0.6 0.4 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 0.85 0.15 )
+( 0.0 1.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))));
+}
+
+potential (speakers)
+{
+ data = ( 0.8 0.2 );
+}
+
+potential (driver)
+{
+ data = ( 0.4 0.6 );
+}
+
+potential (bios)
+{
+ data = ( 0.2 0.8 );
+}
+
+potential (connection)
+{
+ data = ( 0.3 0.7 );
+}
+

@@ -1,0 +1,64 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     tree = "(C1,C2,C3,C4)";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node internet_keeps_dropping
+{
+     label = "C1";
+     position = (386 224);
+     states = ("true" "false");
+}
+
+node broken_kables
+{
+     label = "C2";
+     position = (164 78);
+     states = ("broken" "not_broken");
+}
+
+node network_overload
+{
+     label = "C3";
+     position = (765 85);
+     states = ("overload" "not_overload");
+}
+
+node outdated_drivers
+{
+     label = "C4";
+     position = (408 374);
+     states = ("outdated" "not_outdated");
+}
+
+potential (internet_keeps_dropping | outdated_drivers network_overload broken_kables)
+{
+ data = (((( 1.0 0.0 )
+( 0.8 0.2 ))
+(( 0.95 0.05 )
+( 0.7 0.3 )))
+((( 0.95 0.05 )
+( 0.65 0.35 ))
+(( 0.85 0.15 )
+( 0.0 1.0 ))));
+}
+
+potential (broken_kables)
+{
+ data = ( 0.2 0.8 );
+}
+
+potential (network_overload)
+{
+ data = ( 0.3 0.7 );
+}
+
+potential (outdated_drivers)
+{
+ data = ( 0.25 0.75 );
+}
+

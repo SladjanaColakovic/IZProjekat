@@ -1,0 +1,111 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node black_screen
+{
+     label = "C1";
+     position = (483 239);
+     states = ("true" "false");
+}
+
+node os_update
+{
+     label = "C2";
+     position = (333 74);
+     states = ("bad" "good");
+}
+
+node startup_application
+{
+     label = "C3";
+     position = (609 92);
+     states = ("faulty" "okay");
+}
+
+node drivers
+{
+     label = "C4";
+     position = (797 250);
+     states = ("faulty" "okay");
+}
+
+node monitor_connection
+{
+     label = "C5";
+     position = (177 251);
+     states = ("working" "not_working");
+}
+
+node graphics_card
+{
+     label = "C6";
+     position = (485 418);
+     states = ("faulty" "okay");
+}
+
+potential (black_screen | graphics_card monitor_connection drivers startup_application os_update)
+{
+ data = (((((( 1.0 0.0 )
+( 0.98 0.02 ))
+(( 0.88 0.12 )
+( 0.86 0.14 )))
+((( 0.95 0.05 )
+( 0.92 0.08 ))
+(( 0.82 0.18 )
+( 0.8 0.2 ))))
+(((( 1.0 0.0 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 1.0 0.0 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))))
+((((( 0.93 0.07 )
+( 0.91 0.09 ))
+(( 0.75 0.25 )
+( 0.73 0.27 )))
+((( 0.72 0.28 )
+( 0.7 0.3 ))
+(( 0.3 0.7 )
+( 0.0 1.0 ))))
+(((( 1.0 0.0 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 1.0 0.0 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 ))))));
+}
+
+potential (os_update)
+{
+ data = ( 0.15 0.85 );
+}
+
+potential (startup_application)
+{
+ data = ( 0.2 0.8 );
+}
+
+potential (drivers)
+{
+ data = ( 0.45 0.55 );
+}
+
+potential (monitor_connection)
+{
+ data = ( 0.8 0.2 );
+}
+
+potential (graphics_card)
+{
+ data = ( 0.15 0.85 );
+}
+

@@ -1,0 +1,34 @@
+<div>
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Bayes</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="malfunction"><i>Malfunction</i></label>
+                <select [(ngModel)]="selectedMalfunction" id="malfunction" name="malfunction">
+                    <option>black_screen</option>
+                    <option>blue_screen</option>
+                    <option>computer_wont_turn_on</option>
+                    <option>internet_keeps_dropping</option>
+                    <option>no_sound</option>
+                    <option>operating_system_failure</option>
+                    <option>slow_computer</option>
+                    <option>strange_noises</option>
+                    <option>system_automatically_restart</option>
+                </select>
+                <button (click)="bayes()"><i>Bayes</i></button>
+            </div>
+        </div>
+        <div *ngIf="results != null" class="col-6">
+            <div class="part2">
+                <h2><i>Reasons:</i></h2>
+                <ul *ngFor="let r of results">
+                    <li *ngIf="r.percentage != 100"><i>{{r.malfunction}}: {{r.percentage}}%</i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
