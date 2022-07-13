@@ -1,0 +1,5 @@
+#processorBrand;processorName;cores;processorFrequency;ram;ramCapacity;hardDisc;hardDiscCapacity;graphicsType;graphicsCard;chipset
+Intel;Core i5;4;2.4;DDR4;32;SSD;256;discrete;nVidia GeForce GTX 1650;Intel HM 370
+AMD;3020e;2;1.2;DDR4;4;SSD;256;integrated;AMD Radeon Graphics;AMD SoC Paltform
+AMD;Ryzen 5 5600X;6;3.7;DDR4;32;SSD;1;discrete;GeForce RTX 3060 LHR;AMD B550
+Intel;Core i3;4;2.6;DDR4;8;SSD;240;integrated;Intel UHD 610;Intel H410
