@@ -31,4 +31,9 @@ export class AppComponent {
     this.router.navigate(['/bayes']);
     this.isHomePage = false;
   }
+
+  similarity(){
+    this.router.navigate(['/similarity']);
+    this.isHomePage = false;
+  }
 }
