@@ -1,0 +1,4 @@
+Backend aplikacija je radjena u Spring Boot tehnologiji.
+Prije pokretanja backend aplikacije, u Build Path dodati sve .jar fajlove iz lib foldera.
+Kao main klasu odabrati InzinjeringApplication. 
+Frontend aplikacija je uradjena u Angular-u. Pokrenuti je komandom npm start. (Ukoliko se jave greske odraditi prvo npm install, pa onda npm start.)
