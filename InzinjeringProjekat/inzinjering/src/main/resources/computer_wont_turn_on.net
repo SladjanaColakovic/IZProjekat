@@ -1,0 +1,111 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node computer_wont_turn_on
+{
+     label = "C1";
+     position = (450 336);
+     states = ("true" "false");
+}
+
+node powercord_connection
+{
+     label = "C2";
+     position = (177 423);
+     states = ("connected" "disconnected");
+}
+
+node power_cable
+{
+     label = "C3";
+     position = (308 202);
+     states = ("functional" "disfunctional");
+}
+
+node power_supply
+{
+     label = "C4";
+     position = (586 193);
+     states = ("correct" "incorrect");
+}
+
+node third_party_hardware
+{
+     label = "C6";
+     position = (734 398);
+     states = ("problematic" "not_problematic");
+}
+
+node motherboard
+{
+     label = "C8";
+     position = (456 548);
+     states = ("functional" "disfunctional");
+}
+
+potential (computer_wont_turn_on | power_cable power_supply third_party_hardware powercord_connection motherboard)
+{
+ data = (((((( 0.1 0.9 )
+( 0.9 0.1 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 0.0 1.0 )
+( 0.85 0.15 ))
+(( 1.0 0.0 )
+( 1.0 0.0 ))))
+(((( 0.7 0.3 )
+( 0.95 0.05 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 0.6 0.4 )
+( 0.95 0.05 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))))
+((((( 0.7 0.3 )
+( 0.95 0.05 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 0.6 0.4 )
+( 0.95 0.05 ))
+(( 1.0 0.0 )
+( 1.0 0.0 ))))
+(((( 0.98 0.02 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 )))
+((( 0.97 0.03 )
+( 1.0 0.0 ))
+(( 1.0 0.0 )
+( 1.0 0.0 ))))));
+}
+
+potential (powercord_connection)
+{
+ data = ( 0.7 0.3 );
+}
+
+potential (power_cable)
+{
+ data = ( 0.6 0.4 );
+}
+
+potential (power_supply)
+{
+ data = ( 0.8 0.2 );
+}
+
+potential (third_party_hardware)
+{
+ data = ( 0.25 0.75 );
+}
+
+potential (motherboard)
+{
+ data = ( 0.73 0.27 );
+}
+

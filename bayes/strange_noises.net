@@ -1,0 +1,83 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node strange_noises
+{
+     label = "C1";
+     position = (328 165);
+     states = ("true" "false");
+}
+
+node disk_drives_generating_noises_when_accessed
+{
+     label = "C2";
+     position = (20 262);
+     states = ("false" "true");
+}
+
+node fan_failure
+{
+     label = "C3";
+     position = (129 76);
+     states = ("faulty" "okay");
+}
+
+node hard_disk_failure
+{
+     label = "C4";
+     position = (524 76);
+     states = ("faulty" "okay");
+}
+
+node power_supply_failure
+{
+     label = "C5";
+     position = (534 278);
+     states = ("faulty" "okay");
+}
+
+potential (strange_noises | power_supply_failure disk_drives_generating_noises_when_accessed hard_disk_failure fan_failure)
+{
+ data = ((((( 0.9 0.1 )
+( 0.8 0.2 ))
+(( 0.6 0.4 )
+( 0.3 0.7 )))
+((( 1.0 0.0 )
+( 0.92 0.08 ))
+(( 0.89 0.11 )
+( 0.7 0.3 ))))
+(((( 0.55 0.45 )
+( 0.25 0.75 ))
+(( 0.35 0.65 )
+( 0.0 1.0 )))
+((( 0.9 0.1 )
+( 0.75 0.25 ))
+(( 0.55 0.45 )
+( 0.4 0.6 )))));
+}
+
+potential (disk_drives_generating_noises_when_accessed)
+{
+ data = ( 0.6 0.4 );
+}
+
+potential (fan_failure)
+{
+ data = ( 0.3 0.7 );
+}
+
+potential (hard_disk_failure)
+{
+ data = ( 0.15 0.85 );
+}
+
+potential (power_supply_failure)
+{
+ data = ( 0.25 0.75 );
+}
+

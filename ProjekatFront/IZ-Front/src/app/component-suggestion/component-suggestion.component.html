@@ -1,0 +1,182 @@
+<div>
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>RAM Suggestion</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="motherboard"><i>Motherboard</i></label>
+                <select [(ngModel)]="selectedMotherboardForRam" id="motherboard" name="motherboard"
+                    (change)="suggestRam()">
+                    <option *ngFor="let m of motherboardsForRam" [ngValue]="m">{{m}}</option>
+                </select>
+                <button (click)="suggestRam()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="rams != null" class="col-6">
+            <div class="part2">
+                <h2><i>RAM</i></h2>
+                <ul *ngFor="let ram of rams">
+                    <li><i>{{ram.manufacturer}} {{ram.type}}-{{ram.speed}} {{ram.capacity}} {{ram.layout}}</i></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Processor Suggestion</i>
+        </h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="motherboard"><i>Motherboard</i></label>
+                <select [(ngModel)]="selectedMotherboardForProcessor" id="motherboard" name="motherboard"
+                    (change)="suggestProcessor()">
+                    <option *ngFor="let m of motherboardsForProcessor" [ngValue]="m">{{m}}</option>
+                </select>
+                <button (click)="suggestProcessor()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="processors != null" class="col-6">
+            <div class="part2">
+                <h2><i>Processor</i></h2>
+                <ul *ngFor="let p of processors">
+                    <li><i>{{p.name}} {{p.frequency}}-{{p.boostFrequency}} Cores: {{p.cores}} Threads: {{p.threads}} L1:
+                            {{p.l1Cache}} L2: {{p.l2Cache}} L3: {{p.l3Cache}}</i></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Hard Disk Suggestion</i>
+        </h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="motherboard"><i>Motherboard</i></label>
+                <select [(ngModel)]="selectedMotherboardForHDD" id="motherboard" name="motherboard">
+                    <option *ngFor="let m of motherboardsForHDD" [ngValue]="m">{{m}}</option>
+                </select>
+                <label for="computer"><i>Computer</i></label>
+                <select [(ngModel)]="selectedComputerForHDD" id="computer" name="computer">
+                    <option value="PC">PC</option>
+                    <option value="Laptop">Laptop</option>
+                </select>
+                <button (click)="suggestHDD()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="hdds != null" class="col-6">
+            <div class="part2">
+                <h2><i>HDD</i></h2>
+                <ul *ngFor="let hdd of hdds">
+                    <li *ngIf="hdd.nvme"><i> {{hdd.type}} NVMe {{hdd.format}} {{hdd.hdd_interface}} {{hdd.capacity}}
+                            {{hdd.speed}} </i></li>
+                    <li *ngIf="!hdd.nvme"><i> {{hdd.type}} {{hdd.format}} {{hdd.hdd_interface}} {{hdd.capacity}}
+                            {{hdd.speed}} </i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Graphics Card
+                Suggestion</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="motherboard"><i>Motherboard</i></label>
+                <select [(ngModel)]="selectedMotherboardForGC" id="motherboard" name="motherboard">
+                    <option *ngFor="let m of motherboardsForGC" [ngValue]="m">{{m}}</option>
+                </select>
+                <label for="computer"><i>Computer</i></label>
+                <select [(ngModel)]="selectedComputerForGC" id="computer" name="computer">
+                    <option value="PC">PC</option>
+                    <option value="Laptop">Laptop</option>
+                </select>
+                <button (click)="suggestGC()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="gcs != null" class="col-6">
+            <div class="part2">
+                <h2><i>GC</i></h2>
+                <ul *ngFor="let gc of gcs">
+                    <li><i> {{gc.name}} {{gc.memory}} {{gc.memoryType}} </i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Mouse Suggestion</i>
+        </h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="os"><i>Operating System</i></label>
+                <select [(ngModel)]="selectedOS" id="os" name="os">
+                    <option>Windows_7</option>
+                    <option>Windows_8</option>
+                    <option>Windows_10</option>
+                    <option>macOS</option>
+                </select>
+                <label for="mouseConnection"><i>Type of mouse connection</i></label>
+                <select [(ngModel)]="mouseConnection" id="mouseConnection" name="mouseConnection">
+                    <option>Wired_mouse_connection</option>
+                    <option>Wireless_mouse_connection</option>
+                </select>
+                <button (click)="suggestMouse()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="mouses != null" class="col-6">
+            <div class="part2">
+                <h2><i>Mouses</i></h2>
+                <ul *ngFor="let m of mouses">
+                    <li><i>{{m.name}} Resoulution: {{m.minResolution}}-{{m.maxResolution}} Tracing speed:
+                            {{m.tracingSpeed}} Acceleration: {{m.acceleration}} Response:
+                            {{m.response}} Backlight: {{m.backlight}}</i></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Keyboard Suggestion</i>
+        </h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="os"><i>Operating System</i></label>
+                <select [(ngModel)]="selectedOSForKeyboard" id="os" name="os">
+                    <option>Windows_7</option>
+                    <option>Windows_8</option>
+                    <option>Windows_10</option>
+                    <option>macOS</option>
+                </select>
+                <label for="keyboardConnection"><i>Type of keyboard connection</i></label>
+                <select [(ngModel)]="keyboardConnection" id="keyboardConnection" name="keyboardConnection">
+                    <option>Wired_keyboard_connection</option>
+                    <option>Wireless_keyboard</option>
+                </select>
+                <button (click)="suggestKeyboard()"><i>Suggest</i></button>
+            </div>
+        </div>
+        <div *ngIf="keyboards != null" class="col-6">
+            <div class="part2">
+                <h2><i>Keyboards</i></h2>
+                <ul *ngFor="let k of keyboards">
+                    <li><i>{{k.name}} Backlight: {{k.backlight}}</i></li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
