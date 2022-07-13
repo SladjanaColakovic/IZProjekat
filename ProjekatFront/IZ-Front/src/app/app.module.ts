@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FuzzyLogicComponent } from './fuzzy-logic/fuzzy-logic.component';
 import { BayesComponent } from './bayes/bayes.component';
+import { SimilarityComponent } from './similarity/similarity.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BayesComponent } from './bayes/bayes.component';
     ComponentSuggestionComponent,
     FuzzyLogicComponent,
     BayesComponent,
+    SimilarityComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,77 @@
+<div>
+    <div class="row">
+        <h4 style="margin-left: auto; margin-right: auto; margin-top: 20px; color: #196666;"><i>Similarity</i></h4>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="part1">
+                <label for="computer"><i>Computer</i></label>
+                <select [(ngModel)]="selectedComp" (change) ="show()" id="computer" name="computer">
+                    <option *ngFor = "let c of list">{{c}}</option>
+                    
+                </select>
+
+                
+                
+
+                <button (click)="similarity()"><i>Similarity</i></button>
+            </div>
+        </div>
+        <div *ngIf="similarComputers != null" class="col-6">
+            <div class="part2">
+                <h2><i>Computers:</i></h2>
+                <ul *ngFor="let c of similarComputers">
+                    <li><i>Processor: {{c.processorBrand}} {{c.processorName}} {{c.cores}} {{c.processorFrequency}}GHz RAM: {{c.ram}} {{c.ramCapacity}} HD: {{c.hardDisc}} {{c.hardDiscCapacity}} GC: {{c.graphicsType}} {{c.graphicsCard}} Chipset: {{c.chipset}}</i></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div *ngIf = "selectedComp != null" class="row">
+
+        <div class="col-6">
+            <div class="part1">
+                <label for="processorBrand"><i>Processor Brand</i></label>
+                <input type="text" [(ngModel)] = "processorBrand" disabled>
+
+                <label for="processorName"><i>Processor Name</i></label>
+                <input type="text" [(ngModel)] = "processorName" disabled>
+
+                <label for="cores"><i>Cores</i></label>
+                <input type="text" [(ngModel)] = "cores" disabled>
+
+                <label for="frequency"><i>Frequency</i></label>
+                <input type="text" [(ngModel)] = "frequency" disabled>
+
+                <label for="ramType"><i>Ram Type</i></label>
+                <input type="text" [(ngModel)] = "ramType" disabled>
+
+                <label for="ramCapacity"><i>Ram Capacity</i></label>
+                <input type="text" [(ngModel)] = "ramCapacity" disabled>
+
+                <label for="hdType"><i>HD Type</i></label>
+                <input type="text" [(ngModel)] = "hdType" disabled>
+
+                <label for="hdCapacity"><i>HD Capacity</i></label>
+                <input type="text" [(ngModel)] = "hdCapacity" disabled>
+
+                <label for="gcType"><i>GC Type</i></label>
+                <input type="text" [(ngModel)] = "gcType" disabled>
+
+                <label for="gcModel"><i>GC Model</i></label>
+                <input type="text" [(ngModel)] = "gcModel" disabled>
+
+                <label for="chipset"><i>Chipset</i></label>
+                <input type="text" [(ngModel)] = "chipset" disabled>
+
+                
+
+                
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
